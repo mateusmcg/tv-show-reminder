@@ -1,0 +1,10 @@
+bower_components/
+node_modules/
+**/assets/libs
+**/assets/fonts/
+**/assets/css/bootstrap.css
+**/assets/css/font-awesome.css
+**/assets/css/weather-icons.css
+**/assets/css/weather-icons-wind.css
+**/assets/css/angular-toastr.css
+**/assets/css/bootstrap.css.map

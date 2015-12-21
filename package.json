@@ -1,0 +1,62 @@
+{
+  "name": "tv-show-reminder",
+  "version": "0.0.0",
+  "description": "An app for those who forget which episode they were",
+  "main": "index.html",
+  "window": {
+    "title": "TvShow Record :D",
+    "icon": "link.png",
+    "toolbar": true,
+    "frame": true,
+    "width": 1024,
+    "height": 786,
+    "position": "center",
+    "min_width": 700,
+    "min_height": 700
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateusmcg/tv-show-reminder.git"
+  },
+  "keywords": [
+    "api",
+    "tvshow",
+    "reminder",
+    "app",
+    "angular",
+    "nodewebkit",
+    "bower",
+    "gulp"
+  ],
+  "author": "Mateus Cerqueira <mateus_mcg@icloud.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mateusmcg/tv-show-reminder/issues"
+  },
+  "homepage": "https://github.com/mateusmcg/tv-show-reminder#readme",
+  "devDependencies": {
+    "bower": "^1.7.1",
+    "gulp": "^3.9.0",
+    "gulp-beautify": "^2.0.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-flatten": "^0.2.0",
+    "gulp-if": "^2.0.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-minify-css": "^1.2.2",
+    "gulp-uglify": "^1.5.1",
+    "jshint": "^2.8.0",
+    "jshint-stylish": "^2.1.0",
+    "merge-stream": "^1.0.0",
+    "yargs": "^3.31.0"
+  },
+  "dependencies": {
+    "nedb": "^1.5.0",
+    "q": "^1.4.1"
+  },
+  "scripts": {
+    "start": "nw ."
+  }
+}
