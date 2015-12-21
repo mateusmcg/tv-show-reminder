@@ -27,7 +27,8 @@
     "requirejs": "~2.1.22",
     "restangular": "~1.5.1",
     "weather-icons": "~2.0.10",
-    "angular-toastr": "~1.6.0"
+    "angular-toastr": "~1.6.0",
+    "angular-xeditable": "~0.1.9"
   },
   "devDependencies": {},
   "resolutions": {

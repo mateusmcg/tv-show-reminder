@@ -46,7 +46,7 @@
 			"bower_components/restangular/dist/restangular.js",
 			"bower_components/moment/moment.js",
 			"bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
-			"bower_components/angular-toastr/dist/angular-toastr.js"
+			"bower_components/angular-toastr/dist/angular-toastr.tpls.js"
 		]
 	}
 }
