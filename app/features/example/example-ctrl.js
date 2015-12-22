@@ -6,15 +6,32 @@ define(['app'], function(app) {
         
         vm.example = 'This is an example controller :)'; 
         
-        moviesDb.find({ title: /Aweso/}).then(function(docs){
+        // moviesDb.insert({newItem : 'hahGAfafADFGAFGAaha'}).then(function(result){
+        //     var teste;
+        // });
+        
+        moviesDb.find({ title: /one mor/}).then(function(result){
            var teste; 
         });
         
         var allMovies = moviesDb.getAll();
         
-        moviesDb.count().then(function(count, err){
-            vm.movieCount = 'There are ' + count + ' movies in the database :)';
-        })
+        moviesDb.count().then(function(result){
+            vm.movieCount = 'There are ' + result.count + ' movies in the database :)';
+        });
+
+        var query = {title: /one mor/};
+        var updateObj = {title: 'hey im updated :)'};
+        
+        moviesDb.update(query, updateObj, { multi: true }).then(function(result){
+            vm.moviesUpdated = 'There are ' + result.numUpdated + ' updated movies in the database :)';
+        });
+        
+        // moviesDb.remove({newItem: 'hahGAfafADFGAFGAaha'}, {multi: true}).then(function(result){
+        //    var teste; 
+        // });
+        
+        //moviesDb.removeAll();
         
         // var newMovie = {title: 'ome Movie!', Date: new Date(), Boolean: true, actors: ['lala, lulu, lili'], infos: {description : 'test'} };
         // moviesDb.insert(newMovie).then(function(newDoc, err){
