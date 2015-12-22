@@ -9,6 +9,7 @@ require.config({
 
         //## Common 
         'app-common': 'common/app-common',
+        'app-database': 'database/app-database',
 
         //## 3rd party angular scripts
         'angular': '../assets/libs/angular/angular',
@@ -37,6 +38,7 @@ require.config({
             deps: ['jquery'],
             exports: 'angular'
         },
+        'app-database': ['angular'],
         'angularAMD': ['angular'],
         'angular-route': ['angular'],
         'angular-bootstrap': ['bootstrap', 'angular'],

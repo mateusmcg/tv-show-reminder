@@ -17,8 +17,11 @@ define([
         'app.common'
     ]);
    
-    app.config(function () {          
-
+    app.config(function ($routeProvider) {          
+        $routeProvider.when("/example", angularAMD.route({
+            templateUrl: 'app/features/example/example.html',
+            controllerUrl: 'app/features/example/example-ctrl.js'
+        }));
     });
 
     app.run(['$log', function ($log) {          

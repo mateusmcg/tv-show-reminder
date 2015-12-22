@@ -30,16 +30,3 @@ db.people = new Datastore({
     filename: path.join(data_path, 'data/people.db'),
     autoload: true
 });
-
-
-var promisifyDb = function (obj) {
-    return Q.Promise(function (resolve, reject) {
-        obj.exec(function (error, result) {
-            if (error) {
-                return reject(error);
-            } else {
-                return resolve(result);
-            }
-        });
-    });
-};
