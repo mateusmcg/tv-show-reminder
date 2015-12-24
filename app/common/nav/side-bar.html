@@ -1,0 +1,11 @@
+<div class="left-menu" ng-controller="SideBarCtrl as vm">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <input type="file" class="hidden" accept="image/*" id="profilePicUpload" />
+            <img id="profilePic" class="img-circle profile" ng-click="vm.uploadProfilePic()" src="{{identity.pictureUrl}}" />
+        </div>
+        <div class="col-md-12 text-center">
+            <a href="#" editable-text="identity.name" onaftersave="saveIdentity()">{{ identity.name || 'Informe seu nome :)' }}</a>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,8 @@ require.config({
         'app-common': 'common/app-common',
         'app-database': 'database/app-database',
         'app-trakt-tv-factory': 'common/factory/trakt-tv',
+        'app-header': 'common/nav/header-ctrl',
+        'app-side-bar': 'common/nav/side-bar-ctrl',
 
         //## 3rd party angular scripts
         'angular': '../assets/libs/angular/angular',
@@ -45,7 +47,9 @@ require.config({
         'angular-bootstrap': ['bootstrap', 'angular'],
         'angular-toastr': ['angular'],
         'rest-angular': ['lodash','angular'],
-        'app-trakt-tv-factory': ['angular', 'rest-angular']
+        'app-trakt-tv-factory': ['angular', 'rest-angular'],
+        'app-header': ['angular'],
+        'app-side-bar' : ['angular']
     },
 
     deps: ['app']
