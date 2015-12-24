@@ -10,6 +10,7 @@ require.config({
         //## Common 
         'app-common': 'common/app-common',
         'app-database': 'database/app-database',
+        'app-trakt-tv-factory': 'common/factory/trakt-tv',
 
         //## 3rd party angular scripts
         'angular': '../assets/libs/angular/angular',
@@ -43,7 +44,8 @@ require.config({
         'angular-route': ['angular'],
         'angular-bootstrap': ['bootstrap', 'angular'],
         'angular-toastr': ['angular'],
-        'rest-angular': ['lodash','angular']
+        'rest-angular': ['lodash','angular'],
+        'app-trakt-tv-factory': ['angular', 'rest-angular']
     },
 
     deps: ['app']

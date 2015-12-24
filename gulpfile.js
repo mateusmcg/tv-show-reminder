@@ -17,18 +17,18 @@ var stylish = require('jshint-stylish');
 var argv = require('yargs').argv;
 
 // Clean assets folder
-gulp.task('clean', function () {
+gulp.task('clean-assets', function () {
     return gulp.src(['assets/libs', 'assets/css/*', 'assets/fonts', '!assets/css/app.css', '!assets/css/template.css'])
         .pipe(clean());
 });
 
 // Clean Build
-gulp.task('cleanBuild', function () {
+gulp.task('clean-build', function () {
     return gulp.src(['build/*'])
         .pipe(clean());
 });
 
-gulp.task('copy-files', ['clean'], function(){
+gulp.task('assets', ['clean-assets'], function(){
 	var css = gulp.src(assets.css.files)
 	  	.pipe(gulp.dest(assets.css.dest))
 
@@ -42,7 +42,7 @@ gulp.task('copy-files', ['clean'], function(){
 	return merge(css, fonts, libs);
 });
 
-gulp.task('build', ['cleanBuild'], function(){
+gulp.task('build', ['clean-build'], function(){
 	return gulp.src(['../app/**/*.*','../assets/**/*.*','../index.html', '../main.js'], { cwd: 'app/', base: './' })
 	    .pipe(gulpif(argv.env === 'debug', gulpif('app/**/*.js', jshint(jshintConfig)))) //jsHint será aplicado somente nos arquivos do projeto.
         .pipe(gulpif(argv.env === 'debug', jshint.reporter(stylish)))

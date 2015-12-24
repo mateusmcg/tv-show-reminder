@@ -19,12 +19,10 @@ db.shows = new Datastore({
     autoload: true
 });
 
-
 db.movies = new Datastore({
     filename: path.join(data_path, 'data/movies.db'),
     autoload: true
 });
-
 
 db.people = new Datastore({
     filename: path.join(data_path, 'data/people.db'),
