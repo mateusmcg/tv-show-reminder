@@ -3,17 +3,67 @@
 angular.module('app.common.nav.header', []);
 
 angular.module('app.common.nav.header')
-    .controller('HeaderCtrl', ['$scope', function ($scope) {
+    .controller('HeaderCtrl', ['$scope', 'SearchRestService', function ($scope, SearchRestService) {
 
         var vm = this;
-
-        vm.showList = [];
 
         vm.close = close;
         vm.handleMaximize = handleMaximize;
         vm.minimize = minimize;
         vm.isMaximized = false;
-        vm.defaultImage = '../images/main-section-background.png';
+        vm.showAllResults = showAllResults;
+        vm.getResults = getResults;
+        vm.clearSearch = clearSearch;
+        
+        function clearSearch(){
+            vm.searchQuery = '';
+        };
+        
+        function getResults(search){
+            var partialResults = [];
+            return SearchRestService.getList({query: search, type:'show'}).then(function(shows){
+                partialResults = partialResults.concat(shows.plain());
+                return SearchRestService.getList({query: search, type:'movie'}).then(function(movies){
+                    partialResults = partialResults.concat(movies.plain());
+                    return SearchRestService.getList({query: search, type:'person'}).then(function(people){
+                        partialResults = partialResults.concat(people.plain());
+                        var results = [];
+                        angular.forEach(partialResults, function(value, index){
+                            if(value.type === 'show'){
+                                var images = value.show.images.poster;
+                                var img = images.thumb ? images.thumb : images.medium ? images.medium : images.full ? images.full : null;
+                                var year = value.show.year ? ' (' + value.show.year + ')' : '';
+                                results.push({name: value.show.title + year, img: img, group: 'Shows'});
+                            } else if(value.type === 'movie'){
+                                var images = value.movie.images.poster;
+                                var img = images.thumb ? images.thumb : images.medium ? images.medium : images.full ? images.full : null;
+                                var year = value.movie.year ? ' (' + value.movie.year + ')' : '';
+                                results.push({name: value.movie.title + year, img: img, group: 'Movies'});
+                            } else{
+                                var images = value.person.images.headshot;
+                                var img = images.thumb ? images.thumb : images.medium ? images.medium : images.full ? images.full : null;
+                                results.push({name: value.person.name, img: img, group: 'People'});
+                            }
+                        });
+                        
+                        results = _(results)
+                        .groupBy('group')
+                        .map(function (g) {
+                            g[0].firstInGroup = true;  // the first item in each group
+                            return g;
+                        })
+                        .flatten()
+                        .value();
+                        
+                        return results; 
+                    });
+                });
+            });
+        };
+        
+        function showAllResults(){
+            alert('Show all results');
+        };
 
         function close() {
             win.close();

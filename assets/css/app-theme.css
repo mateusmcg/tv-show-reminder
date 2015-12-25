@@ -1,0 +1,35 @@
+.header {
+    background-color: #00001a;
+}
+
+.left-menu{
+    background-color: #00001a;
+}
+
+.main-container .container{
+    background-color: #fff;
+}
+
+#inputGroup {
+    background-color: #00001a;
+}
+
+.custom-popup-wrapper {
+    background-color: #00001a;
+    border-left: #ddd 1px solid;
+    border-right: #ddd 1px solid;
+    border-bottom: #ddd 1px solid;
+}
+
+.custom-popup-wrapper > .message {
+    border-bottom: 1px solid #ddd;
+    color: #ddd;
+}
+
+.custom-popup-wrapper > .dropdown-menu {
+    background-color: transparent;
+}
+
+.custom-popup-wrapper > .dropdown-menu a {
+    color: #ddd;
+}

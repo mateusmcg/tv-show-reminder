@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello World!</title>
+    <title>TvShow Reminder :)</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/angular-toastr.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/weather-icons.css" rel="stylesheet" />
     <link href="assets/css/weather-icons-wind.css" rel="stylesheet" />
     <link href="assets/css/app.css" rel="stylesheet" />
+    <link href="assets/css/app-theme.css" rel="stylesheet" />
   </head>
   <body id="app">
+      
+    <!--HEADER-->
+    <section ng-include="'app/common/nav/header.html'"
+            id="header"
+            class="header-container"></section>
 
-    <div class="row">
-        <section ng-include="'app/common/nav/header.html'"
-             id="header"
-             class="header-container col-md-12"></section>
-    </div>
-
-    <div class="row">
+    <div class="row main-container">             
+        <!--SIDE MENU-->
         <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
             <aside ng-include="'app/common/nav/side-bar.html'"
-                   id="menu-container"
-                   class="nav"></aside>
+                    id="menu-container"
+                    class="nav"></aside>
         </div>
-
-        <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10">
+                
+        <!--MAIN CONTENT-->
+        <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10 container">
             <section id="content"
-                     class="container"
                      ng-view></section>
-            <!--<a href="#/teste"><h2>Click em mim !</h2></a>-->
+            <a href="#/example"><h2>Click em mim para o exemplo !</h2></a>
         </div>
     </div>
-    
+
     <script src="app/database/database.js"></script>
     
     <script>
