@@ -16,9 +16,6 @@
 
 .custom-popup-wrapper {
     background-color: #00001a;
-    border-left: #ddd 1px solid;
-    border-right: #ddd 1px solid;
-    border-bottom: #ddd 1px solid;
 }
 
 .custom-popup-wrapper > .message {

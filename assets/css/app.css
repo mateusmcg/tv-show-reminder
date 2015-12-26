@@ -140,6 +140,10 @@ body {
     background-color: transparent;
 }
 
+#clearSearchIcon:hover{
+    color: red !important;
+}
+
 /*BEGIN - TYPEAHEAD*/
 
 .custom-popup-wrapper {
@@ -153,6 +157,9 @@ body {
     max-height: 600px;
     min-width: 300px;
     width: auto;
+    border-top-left-radius: 10px;
+    -moz-border-top-left-radius: 10px;
+    -webkit-border-top-left-radius:10;
 }
 
 .custom-popup-wrapper > .message {
@@ -175,7 +182,8 @@ body {
   
 .typeahead-group-header {
     padding-left: 15px;
-    border-top: 1px whitesmoke solid;
+    text-decoration: underline;
+    font-size: 25px;
     color: whitesmoke;
     font-weight: bold;
 }
