@@ -3,7 +3,7 @@
 angular.module('app.common.nav.header', []);
 
 angular.module('app.common.nav.header')
-    .controller('HeaderCtrl', ['$scope', 'SearchRestService', function ($scope, SearchRestService) {
+    .controller('HeaderCtrl', ['$scope', '$log', 'SearchRestService', function ($scope, $log, SearchRestService) {
 
         var vm = this;
 
@@ -14,6 +14,12 @@ angular.module('app.common.nav.header')
         vm.showAllResults = showAllResults;
         vm.getResults = getResults;
         vm.clearSearch = clearSearch;
+        vm.selectItem = selectItem;
+        
+        function selectItem(){
+            var selectedItem = vm.searchQuery;
+            $log.debug('Selected Item: ', selectedItem);
+        }
         
         function clearSearch(){
             vm.searchQuery = '';
@@ -33,16 +39,16 @@ angular.module('app.common.nav.header')
                                 var images = value.show.images.poster;
                                 var img = images.thumb ? images.thumb : images.medium ? images.medium : images.full ? images.full : null;
                                 var year = value.show.year ? ' (' + value.show.year + ')' : '';
-                                results.push({name: value.show.title + year, img: img, group: 'Shows'});
+                                results.push({name: value.show.title + year, img: img, group: 'Shows', ids: value.show.ids});
                             } else if(value.type === 'movie'){
                                 var images = value.movie.images.poster;
                                 var img = images.thumb ? images.thumb : images.medium ? images.medium : images.full ? images.full : null;
                                 var year = value.movie.year ? ' (' + value.movie.year + ')' : '';
-                                results.push({name: value.movie.title + year, img: img, group: 'Movies'});
+                                results.push({name: value.movie.title + year, img: img, group: 'Movies', ids: value.movie.ids});
                             } else{
                                 var images = value.person.images.headshot;
                                 var img = images.thumb ? images.thumb : images.medium ? images.medium : images.full ? images.full : null;
-                                results.push({name: value.person.name, img: img, group: 'People'});
+                                results.push({name: value.person.name, img: img, group: 'People', ids: value.person.ids});
                             }
                         });
                         
