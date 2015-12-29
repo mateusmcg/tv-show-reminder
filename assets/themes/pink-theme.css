@@ -1,13 +1,13 @@
 body{
-    border: 5px #00001a solid;
+    border: 5px #FF69B4 solid;
 }
 
 .header {
-    background-color: #00001a;
+    background-color: #FF69B4;
 }
 
 .left-menu{
-    background-color: #00001a;
+    background-color: #FF69B4;
 }
 
 .main-container .container{
@@ -15,11 +15,11 @@ body{
 }
 
 #inputGroup {
-    background-color: #00001a;
+    background-color: #FF69B4;
 }
 
 .custom-popup-wrapper {
-    background-color: #00001a;
+    background-color: #FF69B4;
 }
 
 .custom-popup-wrapper > .message {

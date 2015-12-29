@@ -1,5 +1,5 @@
 body {
-    height: 100%;
+    height: 100vh;
     margin: 0 auto;
     overflow: hidden;
 }
@@ -17,13 +17,23 @@ body {
     padding-top: 55px;
 }
 
-    .main-container .container{
+    /*.main-container .container{
         padding-top: 15px;
         height: 950px;
-    }
+    }*/
     
 .left-menu{
     height: 950px;
+}
+
+.auto-height{
+    height: 100vh;
+}
+
+form{
+    height: 100%;
+    margin-left: -30px; /*Fix to remove the white gap between the ng-view and side-bar*/
+    background-repeat: no-repeat;
 }
 
 .header {
@@ -33,6 +43,8 @@ body {
     height: 55px !important;
     line-height: 47px !important;
     -webkit-app-region: drag;
+    -webkit-border-bottom-left-radius: 15px;
+    -webkit-border-bottom-right-radius: 25px;
 }
 
     .header input {      
@@ -75,6 +87,10 @@ body {
 
     .header .header-img {
         color: white !important;
+    }
+    
+    .header .fix-margin{
+        padding-right: 25px;
     }
 
 .rounded {
