@@ -3,7 +3,7 @@ define([], function() {
     
     angular.module('app.database', []);
 
-    angular.module('app.database').factory('Movies', ['$q', function($q){
+    angular.module('app.database').factory('MoviesDb', ['$q', function($q){
         return{
             getAll: function(){
                 return db.movies.getAllData();
@@ -88,7 +88,7 @@ define([], function() {
         }
     }]);
 
-    angular.module('app.database').factory('Shows', ['$q', function($q){
+    angular.module('app.database').factory('ShowsDb', ['$q', function($q){
         return{
             getAll: function(){
                 return db.shows.getAllData();
@@ -173,7 +173,7 @@ define([], function() {
         }
     }]);
 
-    angular.module('app.database').factory('People', ['$q', function($q){
+    angular.module('app.database').factory('PeopleDb', ['$q', function($q){
         return{
             getAll: function(){
                 return db.people.getAllData();
@@ -258,7 +258,7 @@ define([], function() {
         }
     }]);
 
-    angular.module('app.database').factory('Settings', ['$q', function($q){
+    angular.module('app.database').factory('SettingsDb', ['$q', function($q){
         return{
             getAll: function(){
                 return db.settings.getAllData();

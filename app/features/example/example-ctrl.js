@@ -1,7 +1,7 @@
 define(['app'], function(app) {
    'use strict';
     
-   app.controller('ExampleController', ['Movies', 'MoviesRestService', 'SearchRestService', function(moviesDb, MoviesRestService, SearchRestService){
+   app.controller('ExampleController', ['MoviesDb', 'MoviesRestService', 'SearchRestService', function(moviesDb, MoviesRestService, SearchRestService){
         var vm = this;
         
         MoviesRestService.get('the-martian-2015').then(function(movie){

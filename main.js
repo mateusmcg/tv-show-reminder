@@ -10,6 +10,7 @@ require.config({
         //## Common 
         'app-common': 'common/app-common',
         'app-database': 'database/app-database',
+        'app-directives': 'common/directives/app-directives',
         'app-trakt-tv-factory': 'common/factory/trakt-tv',
         'app-header': 'common/nav/header-ctrl',
         'app-side-bar': 'common/nav/side-bar-ctrl',
@@ -42,6 +43,7 @@ require.config({
             exports: 'angular'
         },
         'app-database': ['angular'],
+        'app-directives': ['angular'],
         'angularAMD': ['angular'],
         'angular-route': ['angular'],
         'angular-bootstrap': ['bootstrap', 'angular'],

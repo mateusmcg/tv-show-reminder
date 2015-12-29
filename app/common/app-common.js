@@ -6,11 +6,12 @@ define(['angular-bootstrap',
         'rest-angular',
         'app-trakt-tv-factory',
         'app-header',
-        'app-side-bar'], function() {    
+        'app-side-bar',
+        'app-directives'], function() {    
             
     angular.module('app.external.components', ['ui.bootstrap', 'toastr', 'restangular']);
 
-    angular.module('app.components', ['app.database', 'trakt-tv', 'app.common.nav.header', 'app.common.nav.sidebar']);
+    angular.module('app.components', ['app.database', 'trakt-tv', 'app.common.nav.header', 'app.common.nav.sidebar', 'app.directives']);
 
     angular.module('app.common', ['app.components', 'app.external.components']);
 });

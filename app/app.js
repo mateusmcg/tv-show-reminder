@@ -28,6 +28,11 @@ define([
             controllerUrl: 'app/features/example/example-ctrl.js'
         }));
         
+        $routeProvider.when("/show", angularAMD.route({
+            templateUrl: 'app/features/show/show.html',
+            controllerUrl: 'app/features/show/show-ctrl.js'
+        }));
+        
         RestangularProvider.setBaseUrl('https://api-v2launch.trakt.tv/');
         
         RestangularProvider.setFullRequestInterceptor(function(element, operation, route, url, headers, params, httpConfig) {
@@ -52,6 +57,19 @@ define([
             }
             
             return extractedData;
+        });
+        
+        RestangularProvider.setResponseExtractor(function(response) {
+            var newResponse = response;
+            if (angular.isArray(response)) {
+                angular.forEach(newResponse, function(value, key) {
+                newResponse[key].originalElement = angular.copy(value);
+                });
+            } else {
+                newResponse.originalElement = angular.copy(response);
+            }
+
+            return newResponse;
         });
 
     }]);
