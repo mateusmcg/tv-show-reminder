@@ -8,7 +8,8 @@ angular.module('app.directives', []).directive('backImg', function(){
            var url = scope.$eval(attrs.backImg);
            if(url){
              element.css('background-image', 'url(' + url +')'); 
-             element.css('background-size', 'contain');
+             element.css('background-size', 'cover');
+             element.css('background-repeat', 'no-repeat');
              element.css('opacity', '1');
            } 
         });

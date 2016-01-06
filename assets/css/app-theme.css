@@ -2,6 +2,18 @@ body{
     border: 5px #00001a solid;
 }
 
+a{
+    color: white;
+}
+
+.nav-tabs{
+    border-bottom: 2px solid white;
+}
+
+.nav-tabs > li{
+    background-color: #00001a;
+}
+
 .header {
     background-color: #00001a;
 }
@@ -33,4 +45,22 @@ body{
 
 .custom-popup-wrapper > .dropdown-menu a {
     color: #ddd;
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background-color: #00001a;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+	background: #00001a; /* Changes the color when screen lose focus (Gonna pick color later) */
+}
+
+.votes-color{
+    color: red;
 }

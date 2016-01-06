@@ -1,16 +1,11 @@
+html {
+    height: 100%
+}
+
 body {
     height: 100vh;
     margin: 0 auto;
     overflow: hidden;
-}
-
-.float-left {
-    float: left;
-}
-
-.float-right {
-    float: right;
-    padding-left: 90px;
 }
 
 .main-container{
@@ -32,19 +27,90 @@ body {
 
 form{
     height: 100%;
-    margin-left: -30px; /*Fix to remove the white gap between the ng-view and side-bar*/
-    background-repeat: no-repeat;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 70px;
 }
+
+.bg-img{
+    /* Set rules to fill background */
+    min-height: 100%;
+    min-width: 1024px;
+
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+
+    /* Set up positioning */
+    position: fixed;
+    top: 45px;
+    left: 0;    
+    opacity: 0.4;
+}
+
+.adjust-info{
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.adjust-overview{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.adjust-episodes{
+    padding-top: 15px;
+}
+
+.show-logo{
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.episode-img{
+    width: 100%;
+    height: 100%;
+    border-radius: 30%;
+    -webkit-border-radius: 30%;
+}
+
+.episode-overview{
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.btn-add-my-show{
+    width: 100px;
+}
+
+.glyphicon-star{
+    color: yellow;
+}
+
+.fix-h1{
+    margin-top: 5px;
+}
+
+.bgwidth { width: 100%; }
+.bgheight { height: 100%; }
+
 
 .header {
     position: fixed;
+    top: 0;
     z-index: 1000;
     width: 100%;
     height: 55px !important;
     line-height: 47px !important;
     -webkit-app-region: drag;
+    border-bottom-left-radius: 15px;
     -webkit-border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 25px;
     -webkit-border-bottom-right-radius: 25px;
+    box-shadow: 0px 0px 0px 1px #000;
+    -webkit-box-shadow: 0px 0px 0px 1px #000;
 }
 
     .header input {      
@@ -135,6 +201,11 @@ form{
     -webkit-animation: spin2 .7s infinite linear;
 }
 
+@keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
 @-webkit-keyframes spin2 {
     from { -webkit-transform: rotate(0deg);}
     to { -webkit-transform: rotate(360deg);}
@@ -205,3 +276,169 @@ form{
 }
   
 /*END TYPEAHEAD*/
+
+.tabs-left, .tabs-right {
+  border-bottom: none;
+  padding-top: 2px;
+}
+.tabs-left {
+  border-right: 1px solid #ddd;
+}
+.tabs-right {
+  border-left: 1px solid #ddd;
+}
+.tabs-left>li, .tabs-right>li {
+  float: none;
+  margin-bottom: 2px;
+}
+.tabs-left>li {
+  margin-right: -1px;
+}
+.tabs-right>li {
+  margin-left: -1px;
+}
+.tabs-left>li.active>a,
+.tabs-left>li.active>a:hover,
+.tabs-left>li.active>a:focus {
+  border-bottom-color: #ddd;
+  border-right-color: transparent;
+}
+
+.tabs-right>li.active>a,
+.tabs-right>li.active>a:hover,
+.tabs-right>li.active>a:focus {
+  border-bottom: 1px solid #ddd;
+  border-left-color: transparent;
+}
+.tabs-left>li>a {
+  border-radius: 4px 0 0 4px;
+  margin-right: 0;
+  display:block;
+}
+.tabs-right>li>a {
+  border-radius: 0 4px 4px 0;
+  margin-right: 0;
+}
+.sideways {
+  margin-top:50px;
+  border: none;
+  position: relative;
+}
+.sideways>li {
+  height: 20px;
+  width: 120px;
+  margin-bottom: 100px;
+}
+.sideways>li>a {
+  border-bottom: 1px solid #ddd;
+  border-right-color: transparent;
+  text-align: center;
+  border-radius: 4px 4px 0px 0px;
+}
+.sideways>li.active>a,
+.sideways>li.active>a:hover,
+.sideways>li.active>a:focus {
+  border-bottom-color: transparent;
+  border-right-color: #ddd;
+  border-left-color: #ddd;
+}
+.sideways.tabs-left {
+  left: -50px;
+}
+.sideways.tabs-right {
+  right: -50px;
+}
+.sideways.tabs-right>li {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.sideways.tabs-left>li {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+/*-----------------------------------------------------------------------------------------------*/
+
+/****** SCROLL STYLE ******/
+
+::-webkit-scrollbar
+{
+  width: 8px;  /* for vertical scrollbars */
+  height: 8px; /* for horizontal scrollbars */
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+/****** END SCROLL STYLE ******/
+
+/*-----------------------------------------------------------------------------------------------*/
+
+/****** MEDIA STYLES ******/
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .scroll-episodes{
+        max-height: 48vh;
+        overflow-y: auto; 
+    }
+    
+    .scroll-episode-overview{
+        overflow-y: auto;
+        max-height: 33vh;
+        width: 100%;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .scroll-episodes{
+        max-height: 53vh;
+        overflow-y: auto; 
+    }
+    
+    .scroll-episode-overview{
+        overflow-y: auto;
+        max-height: 31vh;
+        width: 100%;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    .scroll-episodes{
+        max-height: 58vh;
+        overflow-y: auto; 
+    }
+    
+    .scroll-episode-overview{
+        overflow-y: auto;
+        max-height: 33vh;
+        width: 100%;
+    }
+}
+
+/****** END MEDIA STYLES ******/

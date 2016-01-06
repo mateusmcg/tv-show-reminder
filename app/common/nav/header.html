@@ -11,7 +11,10 @@
                     uib-typeahead="result as result.name for result in vm.getResults($viewValue)"
                     typeahead-popup-template-url="customPopupTemplate.html"
                     typeahead-loading="vm.loadingSearch" typeahead-no-results="vm.noResults"
-                    typeahead-on-select="vm.selectItem()"/>
+                    typeahead-on-select="vm.selectItem()"
+                    typeahead-min-length="2"
+                    typeahead-wait-ms="100"
+                    typeahead-focus-first="true"/>
                <span ng-show="vm.loadingSearch" class="glyphicon glyphicon-refresh glyphicon-refresh-animate form-control-feedback" style="color: black; font-size: 20px"></span>
                <span id="clearSearchIcon" ng-click="vm.clearSearch()" ng-show="!vm.loadingSearch && vm.searchQuery" class="glyphicon glyphicon-remove form-control-feedback" style="color: black; font-size: 20px; pointer-events: auto; cursor: pointer;"></span>
             </div>

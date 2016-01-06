@@ -147,6 +147,7 @@ define([], function() {
             remove: function(query, options){
                 var defer = $q.defer();
                 
+                //options -> only one option for now: multi which allows the removal of multiple documents if set to true. Default is false
                 options = !options ? {} : options;
                 
                 if(!query){

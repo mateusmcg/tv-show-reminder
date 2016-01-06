@@ -1,3 +1,100 @@
-<form ng-controller="ShowController as vm" back-img="vm.show.images.banner.full">
-    {{vm.show.title}}
+<form class="ctrl-container" ng-controller="ShowController as vm" >
+    <img ng-src="{{vm.show.bgImg}}" class="bg-img" alt="">
+    
+    <!--Show Header-->
+    <div class="row">
+        <!--Logo-->
+        <div class="col-sm-4 col-md-4 col-lg-2" ng-if="vm.show.logo">
+            <img ng-src="{{vm.show.logo}}" class="show-logo" alt="{{vm.show.title}}">
+        </div>
+        <!--Title / Overview / Rating / Etc-->
+        <div class="col-sm-8 col-md-8 col-lg-10">
+            <div class="row">
+                <!--Title-->
+                <div class="col-lg-12">
+                    <h1>
+                        {{vm.show.title}}
+                        <button ng-if="!vm.isMyShow" class="btn btn-success" ng-click="vm.addToMyShows()">
+                            <i class="fa fa-plus fa-lg"></i>&nbsp; Add to MyShows
+                        </button>
+                        <button ng-if="vm.isMyShow" class="btn btn-danger" ng-click="vm.removeFromMyShows()">
+                            <i class="fa fa-trash fa-lg"></i>&nbsp; Remove from MyShows
+                        </button>
+                    </h1> 
+                </div>
+                <!--Infos-->
+                <div class="col-lg-12 adjust-info">
+                    {{vm.show.year}} • {{vm.show.runtime}}min • {{vm.show.status}} • <uib-rating ng-model="vm.show.rating" max="10" readonly="true" titles="[1,2,3,4,5,6,7,8,9,10]" aria-labelledby="default-rating"></uib-rating> {{vm.show.rating}}
+                </div>
+                <!--Overview-->
+                <div class="col-lg-12 adjust-overview">
+                    {{vm.show.overview}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Show Header-->
+    <br />
+    <!--Show Seasons/Episodes-->
+    <div class="row">
+        <uib-tabset justified="true">
+            <uib-tab ng-repeat="season in vm.seasons" heading="Season {{season.number}}" active="season.active">
+                <!--Overview-->
+                <div class="row" ng-if="season.overview">
+                    <div class="col-lg-12">
+                        <h1>Overview</h1>
+                        {{season.overview}}
+                    </div>
+                </div>
+                <div class="row adjust-episodes">
+                    <div class="col-sm-3 col-lg-2 scroll-episodes">
+                        <ul class="nav nav-tabs tabs-left">
+                            <li ng-repeat="episode in season.episodes" ng-class="{'active': vm.selectedEpisode == episode.number}" ng-click="vm.selectedEpisode = episode.number">
+                                <a href="" data-toggle="tab">Episode {{episode.number}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-9 col-lg-10">
+                        <div class="tab-content">
+                            <div ng-repeat="episode in season.episodes" ng-class="{'active': vm.selectedEpisode == episode.number}" class="tab-pane">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-4 col-lg-4" ng-if="episode.images.screenshot.full">
+                                        <img ng-src="{{episode.images.screenshot.full}}" class="episode-img" alt="">
+                                    </div>
+                                    <div ng-class="episode.images.screenshot.thumb ? 'col-sm-6 col-md-8 col-lg-8' : 'col-lg-12'">
+                                        <div class="row">
+                                            <!--Episode Title-->
+                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                <h1 class="fix-h1" ng-if="episode.title">{{episode.title}}</h1>
+                                                <h1 class="fix-h1" ng-if="!episode.title">Episode {{episode.number}}</h1>
+                                            </div>
+                                            <!--Episode Infos-->
+                                            <div class="col-sm-12 col-md-12 col-lg-12 adjust-info">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                                        First Aired: {{episode.first_aired}} • Season {{episode.season}} • Episode {{episode.number}}
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                                        <uib-rating ng-model="episode.rating" max="10" readonly="true" titles="[1,2,3,4,5,6,7,8,9,10]" aria-labelledby="default-rating"></uib-rating> {{episode.rating}} • 
+                                                        <span class="glyphicon glyphicon-heart votes-color"></span> {{episode.votes}} votes
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row scroll-episode-overview">
+                                    <div class="col-sm-12 col-md-12 col-lg-12 episode-overview scroll-y">
+                                        {{episode.overview}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>            
+        </uib-tabset>
+    </div>
+    <!--End Show Seasons/Episodes-->
 </form>
