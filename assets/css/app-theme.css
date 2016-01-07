@@ -88,3 +88,12 @@ a{
 .tooltop-style .tooltip-arrow{
     border-bottom-color: white !important;
 }
+.grid{
+    background-color: #00001a;
+    color: white; 
+}
+
+.grid:hover{
+    background-color: white;
+    color: #00001a;
+}

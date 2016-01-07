@@ -15,7 +15,7 @@ define(['app'], function(app) {
         vm.loadShow();
         
         function loadShow(){
-            var showId = $routeParams.id;
+            var showId = $routeParams._id;
             ShowsRestService.get(showId + '?extended=full,images').then(function(show){
                 console.debug(show);
                 vm.show = show;

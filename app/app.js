@@ -4,6 +4,7 @@ define([
     //## Angular modules
     'angularAMD',
     'angular-route',
+    'angular-animate',
 
     //## Commons components
     'app-common'
@@ -12,6 +13,7 @@ define([
     var app = angular.module('app', [
         //## Angular modules
         'ngRoute',
+        'ngAnimate',
 
         //## Commons
         'app.common'
@@ -31,6 +33,11 @@ define([
         $routeProvider.when("/show", angularAMD.route({
             templateUrl: 'app/features/show/show.html',
             controllerUrl: 'app/features/show/show-ctrl.js'
+        }));
+        
+        $routeProvider.when("/myshows", angularAMD.route({
+            templateUrl: 'app/features/my-shows/my-shows.html',
+            controllerUrl: 'app/features/my-shows/my-shows-ctrl.js'
         }));
         
         RestangularProvider.setBaseUrl('https://api-v2launch.trakt.tv/');

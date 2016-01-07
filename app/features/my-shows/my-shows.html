@@ -1,0 +1,20 @@
+<form class="ctrl-container scroll-y" ng-controller="MyShowsController as vm">
+    <ul class="dynamic-grid" direction="rtol" angular-grid="vm.shows" grid-width="220" gutter-size="10" angular-grid-id="gallery" refresh-on-img-load="false" >
+        <li data-ng-repeat="show in vm.shows" class="grid" ng-click="vm.loadShow(show)" >
+            <img ng-src="{{show.images.poster.thumb}}" height="250" class="grid-img" />
+            <div class="img-desc-wrap">
+                <div class="title">
+                    {{show.title}} ({{show.year}}) 
+                </div>
+                <div class="sub-title">
+                    {{show.status | capitalizeFirstLetter}}
+                </div>
+                <div class="likes-rating-wrap">
+                    <uib-rating ng-model="show.rating" max="10" readonly="true" titles="[1,2,3,4,5,6,7,8,9,10]" aria-labelledby="default-rating"></uib-rating> {{show.rating | toFixed}}
+                    <br />
+                    <span class="glyphicon glyphicon-heart votes-color"></span> {{show.votes}}
+                </div>
+            </div>
+        </li>
+    </ul>
+</form>

@@ -28,7 +28,7 @@ gulp.task('clean-build', function () {
         .pipe(clean());
 });
 
-gulp.task('assets', ['clean-assets'], function(){
+gulp.task('assets', function(){
 	var css = gulp.src(assets.css.files)
 	  	.pipe(gulp.dest(assets.css.dest))
 
