@@ -1,9 +1,24 @@
 <div class="header" ng-controller="HeaderCtrl as vm">
     <div class="row">
-        <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 text-center">
-            <img src="./assets/img/television.png" alt="Tv Show Record :)" class="header-img" />
+        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 text-right vertical-align-fix-menu">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-4 col-lg-4 text-right">
+                    <img src="./assets/img/television.png" alt="Tv Show Record :)" class="header-img" />
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-8 col-lg-8 text-right">
+                    <button class="btn btn-default btn-padding-fix" ng-click="vm.goBack()">
+                        <i class="fa fa-arrow-left fa-lg"></i>
+                    </button>
+                    <button class="btn btn-default btn-padding-fix" ng-click="vm.goForward()">
+                        <i class="fa fa-arrow-right fa-lg"></i>
+                    </button>
+                    <button class="btn btn-default btn-padding-fix" ng-click="vm.refresh()" uib-tooltip="Refresh" tooltip-placement="bottom" tooltip-class="tooltop-style">
+                        <i class="fa fa-refresh fa-lg"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="col-xs-7 col-sm-5 col-md-5 col-lg-5 inputDivFix"> 
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 vertical-align-fix-search"> 
             <div class="form-group has-feedback">
                <input type="text" class="form-control rounded"
                     placeholder="Search" title="Looking for something?" id="searchTxt"
@@ -19,12 +34,28 @@
                <span id="clearSearchIcon" ng-click="vm.clearSearch()" ng-show="!vm.loadingSearch && vm.searchQuery" class="glyphicon glyphicon-remove form-control-feedback" style="color: black; font-size: 20px; pointer-events: auto; cursor: pointer;"></span>
             </div>
         </div>
-        <div class="col-xs-3 col-sm-5 col-md-6 col-lg-6 fix-margin">
-            <div class="pull-right">
-                <button id="btnMinimize" type="button" ng-click="vm.minimize()" class="btn btn-default"><i class="fa fa-minus fa-lg" aria-hidden="true"></i></button>
-                <button id="btnMaximize" type="button" ng-click="vm.handleMaximize()" class="btn btn-default" aria-hidden="true"><span ng-class="{'glyphicon glyphicon-resize-full' : vm.isMaximized == false , 'glyphicon glyphicon-resize-small': vm.isMaximized == true}" aria-hidden="true"></span></button>
-                <button id="btnClose" type="button" ng-click="vm.close()" class="btn btn-default"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+        <div class="col-xs-3 col-sm-3 col-md-5 col-lg-5 vertical-align-fix-menu">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
+                    <button class="btn btn-default btn-padding-menu-fix" uib-tooltip="My Shows" tooltip-placement="bottom" tooltip-class="hide-tooltip tooltop-style">
+                        <i class="fa fa-television fa-lg"></i><span class="hide-text">&nbsp; MyShows</span>
+                    </button>
+                    <button class="btn btn-default btn-padding-menu-fix" uib-tooltip="My Movies" tooltip-placement="bottom" tooltip-class="hide-tooltip tooltop-style">
+                        <i class="fa fa-film fa-lg"></i><span class="hide-text">&nbsp; MyMovies</span>
+                    </button>
+                    <button class="btn btn-default btn-padding-menu-fix" uib-tooltip="My People" tooltip-placement="bottom" tooltip-class="hide-tooltip tooltop-style">
+                        <i class="fa fa-users fa-lg"></i><span class="hide-text">&nbsp; MyPeople</span>
+                    </button>
+                    <button class="btn btn-default btn-padding-menu-fix" uib-tooltip="Settings" tooltip-placement="bottom" tooltip-class="tooltop-style">
+                        <i class="fa fa-cog fa-lg"></i>
+                    </button>
+                </div>
             </div>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 fix-margin text-right vertical-align-fix-menu">
+            <button id="btnMinimize" type="button" ng-click="vm.minimize()" class="btn btn-default"><i class="fa fa-minus fa-lg" aria-hidden="true"></i></button>
+            <button id="btnMaximize" type="button" ng-click="vm.handleMaximize()" class="btn btn-default" aria-hidden="true"><span ng-class="{'glyphicon glyphicon-resize-full' : vm.isMaximized == false , 'glyphicon glyphicon-resize-small': vm.isMaximized == true}" aria-hidden="true"></span></button>
+            <button id="btnClose" type="button" ng-click="vm.close()" class="btn btn-default"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
         </div>
     </div>
 </div>

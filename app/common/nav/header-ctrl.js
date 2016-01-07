@@ -16,6 +16,9 @@ angular.module('app.common.nav.header')
         vm.clearSearch = clearSearch;
         vm.selectItem = selectItem;
         vm.changeStyle = changeStyle;
+        vm.goBack = goBack;
+        vm.goForward = goForward;
+        vm.refresh = refresh;
         
         function changeStyle(){
             var targetelement = 'link'; //determine element type to create nodelist using
@@ -46,6 +49,7 @@ angular.module('app.common.nav.header')
         
         function clearSearch(){
             vm.searchQuery = '';
+            $('#searchTxt').focus();
         };
         
         function getResults(search){
@@ -110,7 +114,19 @@ angular.module('app.common.nav.header')
 
             win.unmaximize();
         };
-
+        
+        function goBack(){
+            window.history.back();
+        }
+        
+        function goForward(){
+            window.history.forward();
+        }
+        
+        function refresh(){
+            location.reload();
+        }
+        
         win.on('maximize', function () {
             vm.isMaximized = true;
             $scope.$apply();

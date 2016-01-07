@@ -77,7 +77,7 @@ form{
 }
 
 .episode-overview{
-    font-size: 23px;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -117,8 +117,12 @@ form{
         -webkit-app-region: no-drag;
     }
     
-    .header .inputDivFix{
+    .header .vertical-align-fix-search{
         margin-top: 10px;
+    }
+    
+    .header .vertical-align-fix-menu{
+        margin-top: 4px;
     }
 
     .header button {
@@ -400,7 +404,7 @@ form{
 /* No media query since this is the default in Bootstrap */
 
 /* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
+@media (min-width: 768px) and (max-width: 991px) { 
     .scroll-episodes{
         max-height: 48vh;
         overflow-y: auto; 
@@ -410,6 +414,22 @@ form{
         overflow-y: auto;
         max-height: 33vh;
         width: 100%;
+    }
+    
+    .btn-padding-fix{
+        padding: 6px 8px;
+    }
+    
+    .btn-padding-menu-fix{
+        padding: 6px 8px;
+    }
+    
+    .hide-text{
+        display: none !important;
+    }
+    
+    .hide-tooltip{
+        display: inline-block !important;
     }
 }
 
@@ -425,6 +445,18 @@ form{
         max-height: 31vh;
         width: 100%;
     }
+    
+    .btn-padding-fix{
+        padding: 6px 4px;
+    }
+    
+    .hide-text{
+        display: inline-block !important;
+    }
+    
+    .hide-tooltip{
+        display: none !important;
+    }
 }
 
 /* Large devices (large desktops, 1200px and up) */
@@ -438,6 +470,18 @@ form{
         overflow-y: auto;
         max-height: 33vh;
         width: 100%;
+    }
+    
+    .btn-padding-fix{
+        padding: 6px 8px;
+    }
+    
+    .hide-text{
+        display: inline-block !important;
+    }
+    
+    .hide-tooltip{
+        display: none !important;
     }
 }
 

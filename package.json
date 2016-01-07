@@ -6,7 +6,7 @@
   "window": {
     "title": "TvShow Record :D",
     "icon": "link.png",
-    "toolbar": true,
+    "toolbar": false,
     "frame": false,
     "width": 1024,
     "height": 786,
