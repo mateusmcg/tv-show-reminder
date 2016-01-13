@@ -1,5 +1,3 @@
-'use strict';
-
 define([
     //## Angular modules
     'angularAMD',
@@ -9,6 +7,7 @@ define([
     //## Commons components
     'app-common'
 ], function(angularAMD) {
+    "use strict";
     
     var app = angular.module('app', [
         //## Angular modules
@@ -82,7 +81,7 @@ define([
     }]);
 
     app.run(['$log', function ($log) {          
-        $log.debug('Launching application! :)')
+        $log.debug('Launching application! :)');
         
 //         var gulp = requireDeps('gulp');
 //         requireDeps('./gulpfile');       

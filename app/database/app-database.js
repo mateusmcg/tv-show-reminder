@@ -56,7 +56,7 @@ define([], function() {
                     $this.find(updateObj).then(function(result){
                         db.movies.loadDatabase();
                         defer.resolve({ numUpdated: numReplaced, updatedObjs: result && numReplaced > 0 ? result.docs : [], error: err });  
-                    })                    
+                    });
                 });
                 
                 return defer.promise;       
@@ -90,7 +90,7 @@ define([], function() {
                 
                 return defer.promise;
             }
-        }
+        };
     }]);
 
     angular.module('app.database').factory('ShowsDb', ['$q', function($q){
@@ -179,7 +179,7 @@ define([], function() {
                 
                 return defer.promise;
             }
-        }
+        };
     }]);
 
     angular.module('app.database').factory('PeopleDb', ['$q', function($q){
@@ -235,7 +235,7 @@ define([], function() {
                     $this.find(updateObj).then(function(result){
                         db.people.loadDatabase();
                         defer.resolve({ numUpdated: numReplaced, updatedObjs: result && numReplaced > 0 ? result.docs : [], error: err });  
-                    })                    
+                    });                    
                 });
                 
                 return defer.promise;       
@@ -269,7 +269,7 @@ define([], function() {
                 
                 return defer.promise;
             }
-        }
+        };
     }]);
 
     angular.module('app.database').factory('SettingsDb', ['$q', function($q){
@@ -325,7 +325,7 @@ define([], function() {
                     $this.find(updateObj).then(function(result){
                       db.settings.loadDatabase();
                       defer.resolve({ numUpdated: numReplaced, updatedObjs: result && numReplaced > 0 ? result.docs : [], error: err });  
-                    })                    
+                    });
                 });
                 
                 return defer.promise;       
@@ -359,6 +359,6 @@ define([], function() {
                 
                 return defer.promise;
             }
-        }
+        };
     }]);
 });

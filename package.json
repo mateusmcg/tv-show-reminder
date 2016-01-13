@@ -60,5 +60,8 @@
   },
   "webkit": {
     "plugin": true
+  },
+  "jshintConfig": {
+      "predef": [ "angular", "document", "$", "_", "win", "window", "location", "alert", "define", "console" ]
   }
 }

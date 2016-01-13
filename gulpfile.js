@@ -47,9 +47,9 @@ gulp.task('assets', function(){
 
 gulp.task('build', ['clean-build'], function(){
 	return gulp.src(['../app/**/*.*','../assets/**/*.*','../index.html', '../main.js'], { cwd: 'app/', base: './' })
-	    .pipe(gulpif(gulpif('app/**/*.js', jshint(jshintConfig)))) //jsHint será aplicado somente nos arquivos do projeto.
-        .pipe(gulpif(jshint.reporter(stylish)))
-        .pipe(gulpif(jshint.reporter('fail')))
+	    .pipe(gulpif('app/**/*.js', jshint(jshintConfig))) //jsHint será aplicado somente nos arquivos do projeto.
+        .pipe(jshint.reporter(stylish))
+        .pipe(jshint.reporter('fail'))
 		.pipe(gulpif('*.js', uglify()))
 		.pipe(gulpif('*.css', minifyCss()))
 		.pipe(gulp.dest('build/'))

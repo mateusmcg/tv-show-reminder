@@ -1,10 +1,12 @@
-'use strict';
+(function(){
+    'use strict';
 
-angular.module('app.common.nav.sidebar', []);
+    angular.module('app.common.nav.sidebar', []);
 
-angular.module('app.common.nav.sidebar')
-    .controller('SideBarCtrl', [function () {
+    angular.module('app.common.nav.sidebar')
+        .controller('SideBarCtrl', [function () {
 
-        var vm = this;
+            var vm = this;
 
-    }]);
+        }]);
+}());

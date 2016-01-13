@@ -58,4 +58,4 @@ define(['app'], function(app) {
             });
         }
    }]);
-})
+});

@@ -1,5 +1,3 @@
-'use strict';
-
 define(['angular-bootstrap',
         'angular-toastr',
         'app-database',
@@ -9,7 +7,9 @@ define(['angular-bootstrap',
         'app-side-bar',
         'app-directives',
         'angular-grid',
-        'app-filters'], function() {    
+        'app-filters'], function() {
+              
+    'use strict';    
             
     angular.module('app.external.components', ['ui.bootstrap', 'toastr', 'restangular', 'angularGrid']);
 
