@@ -9,6 +9,7 @@ var flatten = require('gulp-flatten');
 var clean = require('gulp-clean');
 var uglify = require('gulp-uglify');
 var beautify = require('gulp-beautify');
+var gutil = require('gulp-util');
 var gulpif = require('gulp-if');
 var merge = require('merge-stream');
 var minifyCss = require('gulp-minify-css');
@@ -18,6 +19,7 @@ var argv = require('yargs').argv;
 var fs = require('fs');
 var decompress = require('gulp-decompress');
 var download = require("gulp-download");
+var NwBuilder = require('nw-builder');
 
 // Clean assets folder
 gulp.task('clean-assets', function () {
@@ -46,13 +48,31 @@ gulp.task('assets', function(){
 });
 
 gulp.task('build', ['clean-build'], function(){
-	return gulp.src(['../app/**/*.*','../assets/**/*.*','../index.html', '../main.js'], { cwd: 'app/', base: './' })
+	return gulp.src(['../app/**/*.*','../assets/**/*.*','../index.html', '../main.js', '../package.json', '../node_modules/nedb/**'], { cwd: 'app/', base: './' })
 	    .pipe(gulpif('app/**/*.js', jshint(jshintConfig))) //jsHint será aplicado somente nos arquivos do projeto.
         .pipe(jshint.reporter(stylish))
         .pipe(jshint.reporter('fail'))
-		.pipe(gulpif('*.js', uglify()))
-		.pipe(gulpif('*.css', minifyCss()))
+		.pipe(gulpif(['*.js', 'app/**/*.js', 'assets/**/*.js', '!./node_modules/**'], uglify()))
+		.pipe(gulpif('assets/css/*.css', minifyCss()))
 		.pipe(gulp.dest('build/'))
+});
+
+gulp.task('clean-release', function () {
+    return gulp.src(['releases/*'])
+        .pipe(clean());
+});
+
+gulp.task('release', ['build', 'clean-release'], function(){
+    var nw = new NwBuilder({
+        buildDir: './releases',
+        files: ['./build/**'],
+        platforms: ['win64'],
+        version: '0.12.3'
+    });
+
+    nw.on('log', gutil.log);
+
+    return nw.build().catch(gutil.log);
 });
 
 //jsHint será aplicado somente nos arquivos do projeto.

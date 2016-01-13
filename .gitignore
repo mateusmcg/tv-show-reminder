@@ -1,6 +1,8 @@
 bower_components/
 node_modules/
 releases/
+build/
+cache/
 **/assets/libs
 **/assets/fonts/
 **/assets/css/bootstrap.css

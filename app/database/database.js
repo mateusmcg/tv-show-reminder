@@ -1,6 +1,5 @@
 var Datastore = require('nedb'),
     path = require('path'),
-    Q = require('q'),
 
     db = {},
     data_path = require('nw.gui').App.dataPath,
