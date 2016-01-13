@@ -97,3 +97,27 @@ a{
     background-color: white;
     color: #00001a;
 }
+
+.grid:hover .fix-remove-from-myshow-icon{
+    color: white;
+}
+
+.grid:hover .fix-watched-show-icon{
+    color: white;
+}
+
+.fix-remove-from-myshow-icon:hover{
+    color: red !important;
+}
+
+.glyphicon-star{
+    color: yellow;
+}
+
+.app-loading{
+    background: rgba(0, 0, 26, .5);
+}
+
+.sk-fading-circle .sk-circle:before{
+    background-color: #00001a;   
+}

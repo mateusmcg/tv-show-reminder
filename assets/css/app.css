@@ -85,10 +85,6 @@ form{
     width: 100px;
 }
 
-.glyphicon-star{
-    color: #CCCC00;
-}
-
 .fix-h1{
     margin-top: 5px;
 }
@@ -237,6 +233,61 @@ form{
 
 .scroll-y{
     overflow-y: auto; 
+}
+
+.fix-watched-episode-icon{
+    float: right;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.fix-watched-season-icon{
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.fix-watched-show-icon{
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.fix-remove-from-myshow-icon{
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.watched{
+    opacity: 0.7 !important;
+}
+
+.app-loading{
+    position: fixed;
+    top: 5px;
+    bottom: 5px;
+    right: 5px;
+    left: 5px;
+    z-index: 99999999999999;
+    pointer-events: none;
+}
+
+.sk-fading-circle{
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 42%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+
+.hide{
+    display: none;
 }
 
 /*BEGIN - TYPEAHEAD*/

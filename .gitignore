@@ -1,5 +1,6 @@
 bower_components/
 node_modules/
+releases/
 **/assets/libs
 **/assets/fonts/
 **/assets/css/bootstrap.css
@@ -7,4 +8,5 @@ node_modules/
 **/assets/css/weather-icons.css
 **/assets/css/weather-icons-wind.css
 **/assets/css/angular-toastr.css
+**/assets/css/spinkit.css
 **/assets/css/bootstrap.css.map

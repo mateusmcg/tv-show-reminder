@@ -1,4 +1,5 @@
 <form class="ctrl-container" ng-controller="ShowController as vm" >
+    <div app-loading="vm.isLoading"></div>
     <img ng-src="{{vm.show.bgImg}}" class="bg-img" alt="">
     
     <!--Show Header-->
@@ -38,7 +39,10 @@
     <!--Show Seasons/Episodes-->
     <div class="row">
         <uib-tabset justified="true">
-            <uib-tab ng-repeat="season in vm.seasons" heading="Season {{season.number}}" active="season.active">
+            <uib-tab ng-repeat="season in vm.seasons track by season.ids.trakt" active="season.active" id="season{{season.number}}">
+                <uib-tab-heading>
+                    <i ng-if="vm.isMyShow" ng-click="vm.watchSeason(season)" ng-class="season.watched ? 'fa-eye-slash': 'fa-eye'" class="fa fa-eye fa-lg fix-watched-season-icon" uib-tooltip="Seen it all?" tooltip-placement="right" tooltip-class="tooltop-style"></i> Season {{season.number}}
+                </uib-tab-heading>
                 <!--Overview-->
                 <!--<div class="row" ng-if="season.overview">
                     <div class="col-lg-12">
@@ -49,14 +53,14 @@
                 <div class="row adjust-episodes">
                     <div class="col-sm-3 col-lg-2 scroll-episodes">
                         <ul class="nav nav-tabs tabs-left">
-                            <li ng-repeat="episode in season.episodes" ng-class="{'active': vm.selectedEpisode == episode.number}" ng-click="vm.selectedEpisode = episode.number">
-                                <a href="" data-toggle="tab">Episode {{episode.number}}</a>
+                            <li ng-repeat="episode in season.episodes track by episode.ids.trakt" ng-class="{'active': vm.selectedEpisode == episode.number, 'watched' : episode.watched || season.watched}" ng-click="vm.selectedEpisode = episode.number">
+                                <a href="" data-toggle="tab">Episode {{episode.number}} <i ng-if="vm.isMyShow" ng-click="vm.watchEpisode(episode, season)" ng-class="episode.watched || season.watched ? 'fa-eye-slash': 'fa-eye'" class="fa fa-lg fix-watched-episode-icon" uib-tooltip="Seen?" tooltip-placement="left" tooltip-class="tooltop-style"></i></a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-sm-9 col-lg-10">
                         <div class="tab-content">
-                            <div ng-repeat="episode in season.episodes" ng-class="{'active': vm.selectedEpisode == episode.number}" class="tab-pane">
+                            <div ng-repeat="episode in season.episodes track by episode.ids.trakt" ng-class="{'active': vm.selectedEpisode == episode.number}" class="tab-pane">
                                 <div class="row">
                                     <div class="col-sm-6 col-md-4 col-lg-4" ng-if="episode.images.screenshot.full">
                                         <img ng-src="{{episode.images.screenshot.full}}" class="episode-img" alt="">
@@ -75,7 +79,7 @@
                                                         First Aired: {{episode.first_aired | beautifyDate}} • Season {{episode.season}} • Episode {{episode.number}}
                                                     </div>
                                                     <div class="col-sm-12 col-md-12 col-lg-12">
-                                                        <uib-rating ng-model="episode.rating" max="10" readonly="true" titles="[1,2,3,4,5,6,7,8,9,10]" aria-labelledby="default-rating"></uib-rating> {{episode.rating}} • 
+                                                        <uib-rating ng-model="episode.rating" max="10" readonly="true" titles="[1,2,3,4,5,6,7,8,9,10]" aria-labelledby="default-rating"></uib-rating> {{episode.rating | toFixed}} • 
                                                         <span class="glyphicon glyphicon-heart votes-color"></span> {{episode.votes}} votes
                                                     </div>
                                                 </div>

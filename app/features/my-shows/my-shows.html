@@ -1,6 +1,9 @@
 <form class="ctrl-container scroll-y" ng-controller="MyShowsController as vm">
+    <div app-loading="vm.isLoading"></div>
     <ul class="dynamic-grid" direction="rtol" angular-grid="vm.shows" grid-width="220" gutter-size="10" angular-grid-id="gallery" refresh-on-img-load="false" >
-        <li data-ng-repeat="show in vm.shows" class="grid" ng-click="vm.loadShow(show)" >
+        <li data-ng-repeat="show in vm.shows track by show._id" ng-class="show.watched ? 'watched' : ''" class="grid" ng-click="vm.loadShow(show)" >
+            <i ng-click="vm.showWatched(show, $event)" ng-class="show.watched ? 'fa-eye-slash' : 'fa-eye'" class="fa fa-lg fix-watched-show-icon" uib-tooltip="Seen it all?" tooltip-placement="right" tooltip-class="tooltop-style"></i>
+            <i ng-click="vm.removeFromMyShows(show, $event)" class="fa fa-remove fa-lg fix-remove-from-myshow-icon"></i>
             <img ng-src="{{show.images.poster.thumb}}" height="250" class="grid-img" />
             <div class="img-desc-wrap">
                 <div class="title">

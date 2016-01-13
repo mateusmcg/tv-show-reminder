@@ -71,16 +71,16 @@ angular.module('app.common.nav.header')
                                 var images = value.show.images.poster;
                                 var img = images.thumb ? images.thumb : images.medium ? images.medium : images.full ? images.full : null;
                                 var year = value.show.year ? ' (' + value.show.year + ')' : '';
-                                results.push({name: value.show.title + year, img: img, group: 'Shows', _id: value.show.ids.trakt});
+                                results.push({name: value.show.title + year, img: img, group: 'Shows', _id: value.show.ids.trakt, trackBy: 'Shows-' + value.show.ids.trakt});
                             } else if(value.type === 'movie'){
                                 var images = value.movie.images.poster;
                                 var img = images.thumb ? images.thumb : images.medium ? images.medium : images.full ? images.full : null;
                                 var year = value.movie.year ? ' (' + value.movie.year + ')' : '';
-                                results.push({name: value.movie.title + year, img: img, group: 'Movies', _id: value.movie.trakt});
+                                results.push({name: value.movie.title + year, img: img, group: 'Movies', _id: value.movie.trakt, trackBy: 'Movies-' + value.movie.trakt});
                             } else{
                                 var images = value.person.images.headshot;
                                 var img = images.thumb ? images.thumb : images.medium ? images.medium : images.full ? images.full : null;
-                                results.push({name: value.person.name, img: img, group: 'People', _id: value.person.trakt});
+                                results.push({name: value.person.name, img: img, group: 'People', _id: value.person.trakt, trackBy: 'People-' + value.person.trakt});
                             }
                         });
                         

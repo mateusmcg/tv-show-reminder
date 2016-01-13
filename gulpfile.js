@@ -15,6 +15,9 @@ var minifyCss = require('gulp-minify-css');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var argv = require('yargs').argv;
+var fs = require('fs');
+var decompress = requireDeps('gulp-decompress');
+var download = requireDeps("gulp-download");
 
 // Clean assets folder
 gulp.task('clean-assets', function () {
@@ -58,3 +61,15 @@ gulp.task('jshint', function() {
 	    .pipe(gulpif('app/**/*.js', jshint(jshintConfig)))
         .pipe(jshint.reporter(stylish))
 });
+
+gulp.task('clean-releases', function () {
+    return gulp.src(['releases/*'])
+        .pipe(clean());
+});
+
+gulp.task('newVersion', ['clean-releases'], function(){
+    return download('https://github.com/mateusmcg/bigdata-search/releases/download/1.0.0-AI/mateusmcg-angular-table-restful-0.0.1-0-g47f6579.zip')
+        .pipe(gulp.dest('releases'))
+        .pipe(decompress({strip: 1}))
+        .pipe(gulp.dest('releases/decompress'))
+})

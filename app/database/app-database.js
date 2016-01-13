@@ -23,6 +23,7 @@ define([], function() {
                 var defer = $q.defer();
                                            
                 db.movies.insert(newMovie, function(err, newDoc) {
+                    db.movies.loadDatabase();
                     defer.resolve({ newDoc: newDoc, error: err });
                 });
                 
@@ -33,6 +34,7 @@ define([], function() {
                 var defer = $q.defer();
                                            
                 db.movies.count(query, function(err, count) {
+                    db.movies.loadDatabase();
                     defer.resolve({ count: count, error: err });
                 });
                 
@@ -50,9 +52,10 @@ define([], function() {
                     return defer.promise;   
                 }
                 
-                db.movies.update(query, { $set : updateObj }, options, function(err, numReplaced) {
+                db.movies.update(query, updateObj, options, function(err, numReplaced) {
                     $this.find(updateObj).then(function(result){
-                      defer.resolve({ numUpdated: numReplaced, updatedObjs: result && numReplaced > 0 ? result.docs : [], error: err });  
+                        db.movies.loadDatabase();
+                        defer.resolve({ numUpdated: numReplaced, updatedObjs: result && numReplaced > 0 ? result.docs : [], error: err });  
                     })                    
                 });
                 
@@ -70,6 +73,7 @@ define([], function() {
                 }
                 
                 db.movies.remove(query, options, function(err, numRemoved){
+                    db.movies.loadDatabase();
                     defer.resolve({ numRemoved: numRemoved, error: err });
                 });
                 
@@ -80,6 +84,7 @@ define([], function() {
                 var defer = $q.defer();               
                 
                 db.movies.remove({}, { multi: true }, function(err, numRemoved){
+                    db.movies.loadDatabase();
                     defer.resolve({ numRemoved: numRemoved, error: err });
                 });
                 
@@ -108,6 +113,7 @@ define([], function() {
                 var defer = $q.defer();
                                            
                 db.shows.insert(newShow, function(err, newDoc) {
+                    db.shows.loadDatabase();
                     defer.resolve({ newDoc: newDoc, error: err });
                 });
                 
@@ -118,6 +124,7 @@ define([], function() {
                 var defer = $q.defer();                               
                                            
                 db.shows.count(query, function(err, count) {
+                    db.shows.loadDatabase();
                     defer.resolve({ count: count, error: err });
                 });
                 
@@ -135,10 +142,9 @@ define([], function() {
                     return defer.promise;   
                 }
                 
-                db.shows.update(query, { $set : updateObj }, options, function(err, numReplaced) {
-                    $this.find(updateObj).then(function(result){
-                      defer.resolve({ numUpdated: numReplaced, updatedObjs: result && numReplaced > 0 ? result.docs : [], error: err });  
-                    })                    
+                db.shows.update(query, updateObj, options, function(err, numReplaced, updatedDoc) {
+                    db.shows.loadDatabase();
+                    defer.resolve({ numUpdated: numReplaced, updatedDoc: updatedDoc, error: err });                    
                 });
                 
                 return defer.promise;       
@@ -156,6 +162,7 @@ define([], function() {
                 }
                 
                 db.shows.remove(query, options, function(err, numRemoved){
+                    db.shows.loadDatabase();
                     defer.resolve({ numRemoved: numRemoved, error: err });
                 });
                 
@@ -166,6 +173,7 @@ define([], function() {
                 var defer = $q.defer();               
                 
                 db.shows.remove({}, { multi: true }, function(err, numRemoved){
+                    db.shows.loadDatabase();
                     defer.resolve({ numRemoved: numRemoved, error: err });
                 });
                 
@@ -194,6 +202,7 @@ define([], function() {
                 var defer = $q.defer();
                                            
                 db.people.insert(newPerson, function(err, newDoc) {
+                    db.people.loadDatabase();
                     defer.resolve({ newDoc: newDoc, error: err });
                 });
                 
@@ -204,6 +213,7 @@ define([], function() {
                 var defer = $q.defer();                               
                                            
                 db.people.count(query, function(err, count) {
+                    db.people.loadDatabase();
                     defer.resolve({ count: count, error: err });
                 });
                 
@@ -221,9 +231,10 @@ define([], function() {
                     return defer.promise;   
                 }
                 
-                db.people.update(query, { $set : updateObj }, options, function(err, numReplaced) {
+                db.people.update(query, updateObj, options, function(err, numReplaced) {
                     $this.find(updateObj).then(function(result){
-                      defer.resolve({ numUpdated: numReplaced, updatedObjs: result && numReplaced > 0 ? result.docs : [], error: err });  
+                        db.people.loadDatabase();
+                        defer.resolve({ numUpdated: numReplaced, updatedObjs: result && numReplaced > 0 ? result.docs : [], error: err });  
                     })                    
                 });
                 
@@ -241,6 +252,7 @@ define([], function() {
                 }
                 
                 db.people.remove(query, options, function(err, numRemoved){
+                    db.people.loadDatabase();
                     defer.resolve({ numRemoved: numRemoved, error: err });
                 });
                 
@@ -251,6 +263,7 @@ define([], function() {
                 var defer = $q.defer();               
                 
                 db.people.remove({}, { multi: true }, function(err, numRemoved){
+                    db.people.loadDatabase();
                     defer.resolve({ numRemoved: numRemoved, error: err });
                 });
                 
@@ -279,6 +292,7 @@ define([], function() {
                 var defer = $q.defer();
                                            
                 db.settings.insert(newSettings, function(err, newDoc) {
+                    db.settings.loadDatabase();
                     defer.resolve({ newDoc: newDoc, error: err });
                 });
                 
@@ -289,6 +303,7 @@ define([], function() {
                 var defer = $q.defer();                               
                                            
                 db.settings.count(query, function(err, count) {
+                    db.settings.loadDatabase();
                     defer.resolve({ count: count, error: err });
                 });
                 
@@ -306,8 +321,9 @@ define([], function() {
                     return defer.promise;   
                 }
                 
-                db.settings.update(query, { $set : updateObj }, options, function(err, numReplaced) {
+                db.settings.update(query, updateObj, options, function(err, numReplaced) {
                     $this.find(updateObj).then(function(result){
+                      db.settings.loadDatabase();
                       defer.resolve({ numUpdated: numReplaced, updatedObjs: result && numReplaced > 0 ? result.docs : [], error: err });  
                     })                    
                 });
@@ -326,6 +342,7 @@ define([], function() {
                 }
                 
                 db.settings.remove(query, options, function(err, numRemoved){
+                    db.settings.loadDatabase();
                     defer.resolve({ numRemoved: numRemoved, error: err });
                 });
                 
@@ -336,6 +353,7 @@ define([], function() {
                 var defer = $q.defer();               
                 
                 db.settings.remove({}, { multi: true }, function(err, numRemoved){
+                    db.settings.loadDatabase();
                     defer.resolve({ numRemoved: numRemoved, error: err });
                 });
                 

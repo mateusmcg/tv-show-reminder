@@ -83,6 +83,14 @@ define([
 
     app.run(['$log', function ($log) {          
         $log.debug('Launching application! :)')
+        
+//         var gulp = requireDeps('gulp');
+//         requireDeps('./gulpfile');       
+// 
+//         if (gulp.tasks.newVersion) { 
+//             console.log('Updating app version...');
+//             gulp.start('newVersion');
+//         }
     }]);
 
     return angularAMD.bootstrap(app);

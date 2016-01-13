@@ -67,10 +67,10 @@
      ng-show="isOpen() && !moveInProgress"
      aria-hidden="{{!isOpen()}}">
      
-    <p ng-if="matches.length == 0">No results found :(</p>
+    <p ng-show="!matches">No results found :(</p>
 
     <ul class="dropdown-menu" role="listbox">
-        <li ng-repeat="match in matches" ng-class="{active: isActive($index) }"
+        <li ng-repeat="match in matches track by $index" ng-class="{active: isActive($index)}"
             ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{::match.id}}">
             <div class="typeahead-group-header" ng-if="match.model.firstInGroup">{{match.model.group}}</div>
             <a>

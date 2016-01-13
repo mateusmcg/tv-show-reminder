@@ -1,7 +1,7 @@
 {
   "name": "TvShow Reminder",
   "version": "0.0.0",
-  "authors": "Mateus Cerqueira <mateus_mcg@icloud.com>",
+  "authors": ["Mateus Cerqueira <mateus_mcg@icloud.com>"],
   "description": "An app for those who forget which episode they were :)",
   "main": "app.js",
   "keywords": [
@@ -30,7 +30,8 @@
     "weather-icons": "~2.0.10",
     "angular-toastr": "~1.6.0",
     "angular-xeditable": "~0.1.9",
-    "angulargrid": "~0.4.0"
+    "angulargrid": "~0.4.0",
+    "SpinKit": "spinkit#~1.2.5"
   },
   "devDependencies": {},
   "resolutions": {

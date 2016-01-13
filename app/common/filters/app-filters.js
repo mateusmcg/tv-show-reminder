@@ -12,6 +12,9 @@ angular.module('app.filters', []).filter('toFixed', function(){
     };
 }).filter('beautifyDate', function(){
     return function(strDate) {
+        if(!strDate)
+            return 'No date found :(';
+            
         var monthNames = ["", "January", "February", "March","April", "May", "June", "July","August", "September", "October","November", "December"];
         var date = new Date();
         strDate = strDate.substring(0, 10).split('-');
@@ -20,5 +23,9 @@ angular.module('app.filters', []).filter('toFixed', function(){
         var day = strDate[2];
         
         return day + ' ' + monthNames[month] + ' ' + year;
+    };
+}).filter('toFixed', function(){
+    return function(str) {
+      return str.toFixed(1);
     };
 });
