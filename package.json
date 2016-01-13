@@ -57,7 +57,8 @@
     "nedb": "^1.6.0"
   },
   "scripts": {
-    "start": "nw ."
+    "start": "nw .",
+    "test": "gulp jshint"
   },
   "webkit": {
     "plugin": true

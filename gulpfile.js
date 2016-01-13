@@ -49,7 +49,7 @@ gulp.task('assets', function(){
 
 gulp.task('build', ['clean-build'], function(){
 	return gulp.src(['../app/**/*.*','../assets/**/*.*','../index.html', '../main.js', '../package.json', '../node_modules/nedb/**'], { cwd: 'app/', base: './' })
-	    .pipe(gulpif('app/**/*.js', jshint(jshintConfig))) //jsHint será aplicado somente nos arquivos do projeto.
+	    .pipe(gulpif('app/**/*.js', jshint(jshintConfig))) //jsHint will be applied only on the app files.
         .pipe(jshint.reporter(stylish))
         .pipe(jshint.reporter('fail'))
 		.pipe(gulpif(['*.js', 'app/**/*.js', 'assets/**/*.js', '!./node_modules/**'], uglify()))
@@ -78,18 +78,19 @@ gulp.task('release', ['build', 'clean-release'], function(){
 //jsHint será aplicado somente nos arquivos do projeto.
 gulp.task('jshint', function() {
 	return gulp.src(['**/*.*'], { cwd: 'app/', base: './' })
-	    .pipe(gulpif('app/**/*.js', jshint(jshintConfig)))
+	    .pipe(gulpif('app/**/*.js', jshint(jshintConfig))) //jsHint will be applied only on the app files.
         .pipe(jshint.reporter(stylish))
+        .pipe(jshint.reporter('fail'))
 });
 
-gulp.task('clean-releases', function () {
-    return gulp.src(['releases/*'])
-        .pipe(clean());
-});
-
-gulp.task('newVersion', ['clean-releases'], function(){
-    return download('https://github.com/mateusmcg/bigdata-search/releases/download/1.0.0-AI/mateusmcg-angular-table-restful-0.0.1-0-g47f6579.zip')
-        .pipe(gulp.dest('releases'))
-        .pipe(decompress({strip: 1}))
-        .pipe(gulp.dest('releases/decompress'))
-})
+// gulp.task('clean-releases', function () {
+//     return gulp.src(['releases/*'])
+//         .pipe(clean());
+// });
+// 
+// gulp.task('newVersion', ['clean-releases'], function(){
+//     return download('https://github.com/mateusmcg/bigdata-search/releases/download/1.0.0-AI/mateusmcg-angular-table-restful-0.0.1-0-g47f6579.zip')
+//         .pipe(gulp.dest('releases'))
+//         .pipe(decompress({strip: 1}))
+//         .pipe(gulp.dest('releases/decompress'))
+// })
