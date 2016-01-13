@@ -16,8 +16,8 @@ var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var argv = require('yargs').argv;
 var fs = require('fs');
-var decompress = requireDeps('gulp-decompress');
-var download = requireDeps("gulp-download");
+var decompress = require('gulp-decompress');
+var download = require("gulp-download");
 
 // Clean assets folder
 gulp.task('clean-assets', function () {
@@ -47,12 +47,12 @@ gulp.task('assets', function(){
 
 gulp.task('build', ['clean-build'], function(){
 	return gulp.src(['../app/**/*.*','../assets/**/*.*','../index.html', '../main.js'], { cwd: 'app/', base: './' })
-	    .pipe(gulpif(argv.env === 'debug', gulpif('app/**/*.js', jshint(jshintConfig)))) //jsHint será aplicado somente nos arquivos do projeto.
-        .pipe(gulpif(argv.env === 'debug', jshint.reporter(stylish)))
-        .pipe(gulpif(argv.env === 'debug', jshint.reporter('fail')))
+	    .pipe(gulpif(gulpif('app/**/*.js', jshint(jshintConfig)))) //jsHint será aplicado somente nos arquivos do projeto.
+        .pipe(gulpif(jshint.reporter(stylish)))
+        .pipe(gulpif(jshint.reporter('fail')))
 		.pipe(gulpif('*.js', uglify()))
 		.pipe(gulpif('*.css', minifyCss()))
-		.pipe(gulpif(argv.env === 'debug', gulp.dest('build/'), gulp.dest(function(file){ return file.base }))) //Se estiver local, uma pasta build é gerada. Se estiver no servidor os arquivos são substituídos.
+		.pipe(gulp.dest('build/'))
 });
 
 //jsHint será aplicado somente nos arquivos do projeto.
