@@ -5,9 +5,6 @@ install:
   - npm install
   - bower install
   - gulp release
-branches:
-  only:
-    - develop
 deploy:
   provider: releases
   api_key:
@@ -15,4 +12,6 @@ deploy:
   file: releases/tv-show-reminder/win64
   skip_cleanup: true
   on:
+    repo: mateusmcg/tv-show-reminder
     tags: true
+    all_branches: true
