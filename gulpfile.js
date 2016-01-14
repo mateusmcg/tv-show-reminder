@@ -93,4 +93,4 @@ gulp.task('jshint', function() {
 //         .pipe(gulp.dest('releases'))
 //         .pipe(decompress({strip: 1}))
 //         .pipe(gulp.dest('releases/decompress'))
-// })
+// });
