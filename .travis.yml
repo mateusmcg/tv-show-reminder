@@ -4,6 +4,10 @@ node_js:
 install:
   - npm install
   - bower install
+before_deploy:
+  - gulp release
+  - cd releases/tv-show-reminder/win64
+  - ls
 deploy:
   skip_cleanup: true
 branches:
