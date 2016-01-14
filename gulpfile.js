@@ -20,6 +20,7 @@ var fs = require('fs');
 var decompress = require('gulp-decompress');
 var download = require("gulp-download");
 var NwBuilder = require('nw-builder');
+var zip = require('gulp-zip');
 
 // Clean assets folder
 gulp.task('clean-assets', function () {
@@ -72,7 +73,13 @@ gulp.task('release', ['build', 'clean-release'], function(){
 
     nw.on('log', gutil.log);
 
-    return nw.build().catch(gutil.log);
+    return nw.build().catch(gutil.log); 
+});
+
+gulp.task('deploy', ['release'], function () {
+    return gulp.src('releases/tv-show-reminder/win64/*')
+        .pipe(zip('deploy.zip'))
+        .pipe(gulp.dest('deploy'));
 });
 
 //jsHint será aplicado somente nos arquivos do projeto.

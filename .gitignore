@@ -3,6 +3,7 @@ node_modules/
 releases/
 build/
 cache/
+deploy/
 **/assets/libs
 **/assets/fonts/
 **/assets/css/bootstrap.css
