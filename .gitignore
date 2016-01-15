@@ -4,6 +4,7 @@ releases/
 build/
 cache/
 deploy/
+diffs/
 **/assets/libs
 **/assets/fonts/
 **/assets/css/bootstrap.css

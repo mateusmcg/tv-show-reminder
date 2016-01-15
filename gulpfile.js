@@ -48,7 +48,7 @@ gulp.task('assets', function(){
 	return merge(css, fonts, libs);
 });
 
-gulp.task('build', ['clean-build'], function(){
+gulp.task('build', ['clean-build', 'assets'], function(){
 	return gulp.src(['../app/**/*.*','../assets/**/*.*','../index.html', '../main.js', '../package.json', '../node_modules/nedb/**'], { cwd: 'app/', base: './' })
 	    .pipe(gulpif('app/**/*.js', jshint(jshintConfig))) //jsHint will be applied only on the app files.
         .pipe(jshint.reporter(stylish))
@@ -73,13 +73,28 @@ gulp.task('release', ['build', 'clean-release'], function(){
 
     nw.on('log', gutil.log);
 
-    return nw.build().catch(gutil.log); 
+    return nw.build().catch(gutil.log);
 });
 
 gulp.task('deploy', ['release'], function () {
     return gulp.src('releases/tv-show-reminder/win64/*')
-        .pipe(zip('deploy.zip'))
-        .pipe(gulp.dest('deploy'));
+        .pipe(zip(packageJSON.version + '-deploy.zip'))
+        .pipe(gulp.dest('deploys'));
+});
+
+gulp.task('unzip-diffs', function(){
+    return gulp.src('diffs/diff.zip')
+        .pipe(decompress())
+        .pipe(gulp.dest('diffs/diff'));
+});
+
+gulp.task('deploy-diffs', ['unzip-diffs'], function () {   
+                    
+    return gulp.src(['diffs/diff/app/**/*.*', 'diffs/diff/assets/**/*.*','diffs/diff/index.html', 'diffs/diff/main.js', 'diffs/diff/package.json', 'diffs/diff/node_modules/nedb/**'], { base: 'diffs/diff/'})
+        .pipe(gulpif(['*.js', 'app/**/*.js', 'assets/**/*.js', '!./node_modules/**'], uglify()))
+		.pipe(gulpif('assets/css/*.css', minifyCss()))
+        .pipe(zip(packageJSON.version + '-diff.zip'))
+        .pipe(gulp.dest('diffs'));
 });
 
 //jsHint será aplicado somente nos arquivos do projeto.
