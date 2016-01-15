@@ -3,7 +3,7 @@ node_modules/
 releases/
 build/
 cache/
-deploy/
+deploys/
 diffs/
 **/assets/libs
 **/assets/fonts/
