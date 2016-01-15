@@ -12,15 +12,15 @@ install:
 before_deploy:
   - bower install
   - gulp deploy
-  - git archive -o deploys/diff.zip HEAD $(git diff --name-only $(git tag --sort version:refname | tail -n 2 | head -n 1) $(git tag --sort version:refname | tail -n 1))
+  - git archive -o deploys/${TRAVIS_TAG}-diff.zip HEAD $(git diff --name-only $(git tag --sort version:refname | tail -n 2 | head -n 1) $(git tag --sort version:refname | tail -n 1))
   - ls deploys
 deploy:
   provider: releases
   api_key:
     secure: K54Slkw1h3bziM3ZMD4GmNxIV8XEflA5hx1t7wllQHADooVSjIolWnAA/d3VeOsFfbU81SnPDmeq5gBdX/W+ziNvYJ2FZYo6daLmDjrvduXMH5qnF6GpWJmZ/DOEfBWqZHZKVfJIBocGR5tlygq98O1ikxZaFWrdLp1MvYDykbGHbrAdlbZBYRtU6oi74xjRuxfNd9NwGeU1xBN6XzoomkWOY1GrmxMcT+4mSQfGCqVA7ONWshLtQCIsaSIOupfJFmeAjeEWJnCvbk60iHoVvsYlUf0mhvO7iEuEy5FSabEkkZLGIGtUxkmqGDdexjD9j2wQva3vl8veF5HLx0dqFJzX802/XREaX+He7YAycLFmthRRp81oVvxAh5uHkEpS9BHaFRJiYNe2yb88eub2Saygk19gnrmXLO72D2KJXNqEbT9db2M+EEGcz/8U4+qFxG0itLPkWH4Tqx6hcyDLUM3GY0muD7gYFb8vgTCkOTh5Wk4sxvQjkbNRBGL1oQ5mR5ixlwVefN7QmWSd3AXTvAUYEgdUTS4mlybYqyAhLj1mCvk+8ooNK35ZBPhN/J3ZAHRxGek1naW2jbN2gxATfF4KP1aZKFq+MtvUqkpshaOoq8vSugGz9gtfAGsbdKgD/Fu09CpoVqfZxqpAn8urq+Znsd8p5UvyHDm/7F83APU=
-  files: 
+  file: 
     - "deploys/${TRAVIS_TAG}-deploy.zip"
-    - "deploys/diff.zip"
+    - "deploys/${TRAVIS_TAG}-diff.zip"
   skip_cleanup: true
   on:
     repo: mateusmcg/tv-show-reminder
