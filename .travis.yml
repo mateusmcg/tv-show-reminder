@@ -14,6 +14,7 @@ before_deploy:
   - gulp deploy
   - mkdir diffs
   - git archive -o diffs/diff.zip HEAD $(git diff --name-only $(git tag --sort version:refname | tail -n 2 | head -n 1) $(git tag --sort version:refname | tail -n 1))
+  - chmod -R 777 diffs
   - gulp deploy-diffs
 deploy:
   provider: releases

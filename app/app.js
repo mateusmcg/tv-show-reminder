@@ -88,6 +88,9 @@ define([
 // 
 //         if (gulp.tasks.newVersion) { 
 //             console.log('Updating app version...');
+//             console.log('Updating app version...');
+//             console.log('Updating app version...');
+//             console.log('Updating app version...');
 //             gulp.start('newVersion');
 //         }
     }]);
