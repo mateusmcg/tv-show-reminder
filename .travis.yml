@@ -2,6 +2,8 @@ language: node_js
 node_js:
   - "4.1"
 install:
+  - git --version
+  - sudo apt-get update && sudo apt-get install git
   - npm install
 before_deploy:
   - bower install
