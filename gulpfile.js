@@ -22,6 +22,15 @@ var download = require("gulp-download");
 var NwBuilder = require('nw-builder');
 var zip = require('gulp-zip');
 
+
+//jsHint será aplicado somente nos arquivos do projeto.
+gulp.task('jshint', function() {
+	return gulp.src(['**/*.*'], { cwd: 'app/', base: './' })
+	    .pipe(gulpif('app/**/*.js', jshint(jshintConfig))) //jsHint will be applied only on the app files.
+        .pipe(jshint.reporter(stylish))
+        .pipe(jshint.reporter('fail'))
+});
+
 // Clean assets folder
 gulp.task('clean-assets', function () {
     return gulp.src(['assets/libs', 'assets/css/*', 'assets/fonts', '!assets/css/app.css', '!assets/css/template.css'])
@@ -53,7 +62,7 @@ gulp.task('build', ['clean-build', 'assets'], function(){
 	    .pipe(gulpif('app/**/*.js', jshint(jshintConfig))) //jsHint will be applied only on the app files.
         .pipe(jshint.reporter(stylish))
         .pipe(jshint.reporter('fail'))
-		.pipe(gulpif(['*.js', 'app/**/*.js', 'assets/**/*.js', '!./node_modules/**'], uglify()))
+		//.pipe(gulpif(['*.js', 'app/**/*.js', 'assets/**/*.js', '!./node_modules/**'], uglify()))
 		.pipe(gulpif('assets/css/*.css', minifyCss()))
 		.pipe(gulp.dest('build/'))
 });
@@ -82,37 +91,24 @@ gulp.task('deploy', ['release'], function () {
         .pipe(gulp.dest('deploys'));
 });
 
-gulp.task('unzip-diffs', function(){
-    return gulp.src('diffs/diff.zip')
-        .pipe(decompress())
-        .pipe(gulp.dest('diffs/diff'));
-});
 
-gulp.task('deploy-diffs', ['unzip-diffs'], function () {   
-                    
-    return gulp.src(['diffs/diff/app/**/*.*', 'diffs/diff/assets/**/*.*','diffs/diff/index.html', 'diffs/diff/main.js', 'diffs/diff/package.json', 'diffs/diff/node_modules/nedb/**'], { base: 'diffs/diff/'})
-        .pipe(gulpif(['*.js', 'app/**/*.js', 'assets/**/*.js', '!./node_modules/**'], uglify()))
-		.pipe(gulpif('assets/css/*.css', minifyCss()))
-        .pipe(zip(packageJSON.version + '-diff.zip'))
-        .pipe(gulp.dest('diffs'));
-});
-
-//jsHint será aplicado somente nos arquivos do projeto.
-gulp.task('jshint', function() {
-	return gulp.src(['**/*.*'], { cwd: 'app/', base: './' })
-	    .pipe(gulpif('app/**/*.js', jshint(jshintConfig))) //jsHint will be applied only on the app files.
-        .pipe(jshint.reporter(stylish))
-        .pipe(jshint.reporter('fail'))
-});
+// gulp.task('unzip-diffs', function(){
+//     return gulp.src('diffs/diff.zip')
+//         .pipe(decompress())
+//         .pipe(gulp.dest('diffs/diff'));
+// });
+// 
+// gulp.task('deploy-diffs', ['unzip-diffs'], function () {   
+//                     
+//     return gulp.src(['diffs/diff/app/**/*.*', 'diffs/diff/assets/**/*.*','diffs/diff/index.html', 'diffs/diff/main.js', 'diffs/diff/package.json', 'diffs/diff/node_modules/nedb/**'], { base: 'diffs/diff/'})
+//         .pipe(gulpif(['*.js', 'app/**/*.js', 'assets/**/*.js', '!./node_modules/**'], uglify()))
+// 		.pipe(gulpif('assets/css/*.css', minifyCss()))
+//         .pipe(zip(packageJSON.version + '-diff.zip'))
+//         .pipe(gulp.dest('diffs'));
+// });
 
 // gulp.task('clean-releases', function () {
 //     return gulp.src(['releases/*'])
 //         .pipe(clean());
 // });
 // 
-// gulp.task('newVersion', ['clean-releases'], function(){
-//     return download('https://github.com/mateusmcg/bigdata-search/releases/download/1.0.0-AI/mateusmcg-angular-table-restful-0.0.1-0-g47f6579.zip')
-//         .pipe(gulp.dest('releases'))
-//         .pipe(decompress({strip: 1}))
-//         .pipe(gulp.dest('releases/decompress'))
-// });

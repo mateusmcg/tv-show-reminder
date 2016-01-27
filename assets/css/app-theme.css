@@ -121,3 +121,22 @@ a{
 .sk-fading-circle .sk-circle:before{
     background-color: #00001a;   
 }
+
+.footer{
+    color: white;
+    background-color: #00001a;
+}
+
+.btn-app{
+    color: white;
+    background-color: #00001a;
+}
+
+.btn-app:hover{
+    color: #00001a;
+    background-color: white;
+}
+
+.download-link{
+    color: #00001a;
+}

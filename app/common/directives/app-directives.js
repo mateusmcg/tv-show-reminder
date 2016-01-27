@@ -20,8 +20,8 @@
     angular.module('app.directives').directive('appLoading', function(){
         return {
             restrict: 'AE',
-            template: '<div class="app-loading">' +
-                    ' <div class="sk-fading-circle">' +
+            template:'<div class="app-loading">' +
+                    '   <div class="sk-fading-circle">' +
                     '     <div class="sk-circle1 sk-circle"></div>' +
                     '     <div class="sk-circle1 sk-circle"></div>' +
                     '     <div class="sk-circle2 sk-circle"></div>' +
@@ -35,7 +35,7 @@
                     '     <div class="sk-circle10 sk-circle"></div>' +
                     '     <div class="sk-circle11 sk-circle"></div>' +
                     '     <div class="sk-circle12 sk-circle"></div>' +
-                    ' </div>' +
+                    '   </div>' +
                     '</div>',
             link: function(scope, element, attrs){
                 scope.$watch(attrs.appLoading, function(newValue, oldValue){

@@ -1,0 +1,72 @@
+<footer class="footer" ng-controller="FooterCtrl as vm">
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="" ng-click="vm.openReleaseNotes()"><i class="fa fa-sticky-note-o"></i> Release Notes</a> |
+            <a href="" ng-click="vm.openBugs()"><i class="fa fa-bug"></i> Bugs</a> | 
+            <a href="" ng-click="vm.openAuthor()"><i class="fa fa-info-circle"></i> About</a>
+            <label class="pull-right">{{vm.appVersion}}</label>
+        </div>
+    </div>
+</footer>
+
+<script type="text/ng-template" id="releaseNotesModal.html">
+    <div class="modal-header row">
+        <div class="col-sm-11 col-md-11 col-lg-11">
+            <h3 class="modal-title">Releases</h3>
+        </div>
+        <div class="col-sm-1 col-md-1 col-lg-1 text-right">
+            <a href="" ng-click="dismiss()"><i class="fa fa-times fa-lg dismiss-modal-button"></i></a>
+        </div>
+    </div>
+    <div class="modal-body modal-body-scroll">
+        <div class="row" ng-repeat="release in releases track by release.tag_name">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <h2>{{release.tag_name}} • {{release.name}}</h2>
+                <pre>{{release.body}}</pre>
+                <a ng-if="release.downloadUrl" href="{{release.downloadUrl}}" class="download-link">Download ({{release.fileSize}})</a>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-app" type="button" ng-click="dismiss()">OK</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="bugsModal.html">
+    <div class="modal-header row">
+        <div class="col-sm-11 col-md-11 col-lg-11">
+            <h3 class="modal-title">Issues</h3>
+        </div>
+        <div class="col-sm-1 col-md-1 col-lg-1 text-right">
+            <a href="" ng-click="dismiss()"><i class="fa fa-times fa-lg dismiss-modal-button"></i></a>
+        </div>
+    </div>
+    <div class="modal-body modal-body-scroll">
+        <div class="row" ng-repeat="issue in issues track by issue.number">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <h2>{{issue.title}} • <span class="label" ng-class="issue.state === 'open' ? 'label-success' : issue.state === 'closed' ? 'label-danger' : 'label-primary'">{{issue.state}}</span></h2>
+                <pre>{{!issue.body ? 'No description provided.' : issue.body}}</pre>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-app" type="button" ng-click="dismiss()">OK</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="aboutModal.html">
+    <div class="modal-header row">
+        <div class="col-sm-11 col-md-11 col-lg-11">
+            <h3 class="modal-title">About</h3>
+        </div>
+        <div class="col-sm-1 col-md-1 col-lg-1 text-right">
+            <a href="" ng-click="dismiss()"><i class="fa fa-times fa-lg dismiss-modal-button"></i></a>
+        </div>
+    </div>
+    <div class="modal-body modal-body-scroll">
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-app" type="button" ng-click="dismiss()">OK</button>
+    </div>
+</script>

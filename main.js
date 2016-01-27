@@ -14,6 +14,7 @@ require.config({
         'app-filters': 'common/filters/app-filters',
         'app-trakt-tv-factory': 'common/factory/trakt-tv',
         'app-header': 'common/nav/header-ctrl',
+        'app-footer': 'common/nav/footer-ctrl',
         'app-side-bar': 'common/nav/side-bar-ctrl',
 
         //## 3rd party angular scripts
@@ -56,6 +57,7 @@ require.config({
         'rest-angular': ['lodash','angular'],
         'app-trakt-tv-factory': ['angular', 'rest-angular'],
         'app-header': ['angular'],
+        'app-footer': ['angular'],
         'app-side-bar' : ['angular'],
         'angular-grid' : ['angular']
     },
