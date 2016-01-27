@@ -82,7 +82,7 @@
   "platformOverrides": {
     "win64": {
       "window": {
-        "toolbar": true
+        "toolbar": false
       }
     }
   }

@@ -58,7 +58,7 @@ gulp.task('assets', function(){
 });
 
 gulp.task('build', ['clean-build', 'assets'], function(){
-	return gulp.src(['../app/**/*.*','../assets/**/*.*','../index.html', '../main.js', '../package.json', '../node_modules/nedb/**'], { cwd: 'app/', base: './' })
+	return gulp.src(['../app/**/*.*','../assets/**/*.*','../index.html', '../main.js', '../package.json', '../node_modules/nedb/**', '../node_modules/underscore/**', '../node_modules/mkdirp/**', '../node_modules/localforage/**', '../node_modules/binary-search-tree/**', '../node_modules/async/**'], { cwd: 'app/', base: './' })
 	    .pipe(gulpif('app/**/*.js', jshint(jshintConfig))) //jsHint will be applied only on the app files.
         .pipe(jshint.reporter(stylish))
         .pipe(jshint.reporter('fail'))
