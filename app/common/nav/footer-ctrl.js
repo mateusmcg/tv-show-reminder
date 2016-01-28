@@ -4,7 +4,7 @@
     angular.module('app.common.nav.footer', []);
     
     
-    angular.module('app.common.nav.footer').controller('FooterCtrl', ['$uibModal', function($uibModal){
+    angular.module('app.common.nav.footer').controller('FooterCtrl', ['$uibModal', '$scope', '$rootScope', 'toastr', function($uibModal, $scope, $rootScope, toastr){
         var vm = this;
         
         var packageJSON = requireDeps('./package.json');
@@ -13,6 +13,35 @@
         vm.openReleaseNotes = openReleaseNotes;
         vm.openAuthor = openAuthor;
         vm.openBugs = openBugs;
+        
+        function handleDownloadNewVersion(evt, state){
+            vm.state = null;
+            
+            if(state.finished){
+                toastr.success('Download finished', 'Success');
+                return;   
+            }
+            
+            if(state.error){
+                toastr.error('Something wrong happened', 'Error');
+                console.error(state.error);
+                return;   
+            }
+            
+            vm.state = state;
+            vm.percentage = (100 * state.percentage).toFixed(2);
+            if(state.time.remaining){
+                if(state.time.remaining >= 60)
+                    vm.remaining = '(' + (state.time.remaining / 60).toFixed(2).replace('.', ':') + ' minutes remaining)';
+                else{
+                    vm.remaining = '(' + state.time.remaining.toFixed(0) + ' seconds remaining)';
+                }
+            }
+            
+            $scope.$apply();
+        }
+        
+        $rootScope.$on('downloadNewVersion', handleDownloadNewVersion);        
         
         function openReleaseNotes(){
             $uibModal.open({

@@ -78,16 +78,16 @@ define([
             return newResponse;
         });
         
-        angular.extend(toastrConfig, {
-            autoDismiss: false,
-            extendedTimeOut: 60 * 60 * 1000,
-            timeOut: 60 * 60 * 1000,
-            tapToDismiss: false
-        });
+        // angular.extend(toastrConfig, {
+        //     autoDismiss: false,
+        //     extendedTimeOut: 60 * 60 * 1000,
+        //     timeOut: 60 * 60 * 1000,
+        //     tapToDismiss: false
+        // });
 
     }]);
 
-    app.run(['$log', '$http', 'toastr', '$timeout', '$q', function ($log, $http, toastr, $timeout, $q) {          
+    app.run(['$log', '$http', 'toastr', '$timeout', '$q', '$rootScope', function ($log, $http, toastr, $timeout, $q, $rootScope) {          
         $log.debug('Launching application! :)');
         var full = {};
         
@@ -107,13 +107,49 @@ define([
                 console.debug('Update app version.', result.data);
                 full = _.findWhere(result.data.assets, { name: result.data.tag_name + '-deploy.zip'});
                 var size = formatBytes(full.size);
-                toastr.info('<a id="updateAppVersion" href="'+ full.browser_download_url +'">Download ' + result.data.tag_name + ' now (' + size + ').</a>' , 'New Version Avaiable !', {
+                toastr.info('<a id="updateAppVersion">Download ' + result.data.tag_name + ' now (' + size + ').</a>' , 'New Version Avaiable !', {
                     allowHtml: true,
-                    closeButton: true
+                    closeButton: true,
+                    autoDismiss: false,
+                    extendedTimeOut: 60 * 60 * 1000,
+                    timeOut: 60 * 60 * 1000,
+                    tapToDismiss: false
                 });
                 $timeout(function(){
                     $("#updateAppVersion").click(function(evt){
+                        toastr.clear();
+                        var fs = requireDeps('fs');
+                        var request = requireDeps('request');
+                        var progress = requireDeps('request-progress');
                         
+                        // The options argument is optional so you can omit it 
+                        progress(request({ method: 'GET', uri: full.browser_download_url, gzip: true }))
+                        .on('progress', function (state) {
+                            // The state is an object that looks like this: 
+                            // { 
+                            //     percentage: 0.5,           // Overall percentage (between 0 to 1) 
+                            //     speed: 554732,             // The download speed in bytes/sec 
+                            //     size: { 
+                            //         total: 90044871,       // The total payload size in bytes 
+                            //         transferred: 27610959  // The transferred payload size in bytes 
+                            //     }, 
+                            //     time: { 
+                            //         elapsed: 36.235,      // The total elapsed seconds since the start (3 decimals) 
+                            //         remaining: 81.403     // The remaining seconds to finish (3 decimals) 
+                            //     } 
+                            // }
+                            
+                            $rootScope.$broadcast('downloadNewVersion', state);
+                            
+                            console.log('progress', state);
+                        })
+                        .on('error', function (err) {
+                            $rootScope.$broadcast('downloadNewVersion', { error: err });
+                        })
+                        .on('end', function () {
+                            $rootScope.$broadcast('downloadNewVersion', { finished: true });
+                        })
+                        .pipe(fs.createWriteStream('C:/Users/Mateus C/Downloads/tv-show-reminder.zip'));
                     });
                 }, 500);
                 return;
@@ -122,13 +158,19 @@ define([
             console.debug('App is up to date');
         }, function(err){
             console.error('Error trying to update app.', err);
-        });
-             
-// 
-//         if (gulp.tasks.updateVersion) { 
-//             console.log('Updating app version...');
-//             gulp.start('updateVersion');
-//         }
+        });        
+    }]);
+    
+    app.controller('appCtrl', ['$rootScope', '$scope', function($rootScope, $scope){
+        var vm = this;
+        
+        function handleDownloadNewVersion(evt, state){
+            vm.state = state;
+            vm.percentage = (100 * state.percentage).toFixed(2);
+            $scope.$apply();
+        }
+        
+        $rootScope.$on('downloadNewVersion', handleDownloadNewVersion);
     }]);
     
     document.addEventListener('DOMContentLoaded', function () {

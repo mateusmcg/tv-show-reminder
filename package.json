@@ -53,10 +53,12 @@
     "yargs": "^3.31.0"
   },
   "dependencies": {
-    "nedb": "^1.6.0",
     "gulp": "^3.9.0",
     "gulp-decompress": "^1.2.0",
-    "gulp-download": "0.0.1"
+    "gulp-download": "0.0.1",
+    "nedb": "^1.6.0",
+    "request": "^2.69.0",
+    "request-progress": "^2.0.1"
   },
   "scripts": {
     "start": "nw .",

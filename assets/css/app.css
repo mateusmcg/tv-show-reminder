@@ -160,6 +160,10 @@ form{
     line-height: 30px;
 }
 
+.download-progress{
+    padding-top: 5px;
+}
+
 .app-modal-window .modal-dialog {
   width: 95%;
 }
